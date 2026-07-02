@@ -2,7 +2,7 @@
 
 A minimal-style redesign of [yaycommerce.com](https://yaycommerce.com) — built with Next.js (App Router), Tailwind CSS v4, and shadcn/ui.
 
-**Live demo:** [tommyclaude.github.io/platfourm2](https://tommyclaude.github.io/platfourm2/) — deployed automatically to GitHub Pages via `.github/workflows/deploy-pages.yml` (static export with `output: "export"`, published to the `gh-pages` branch).
+**Live demo:** [tommyclaude.github.io/platfourm2/yaycommerce](https://tommyclaude.github.io/platfourm2/yaycommerce/) — deployed automatically to GitHub Pages via `.github/workflows/deploy-pages.yml` (static export with `output: "export"`, published to the `yaycommerce/` folder of the `gh-pages` branch so the site root stays available for the main project).
 
 ## Status
 

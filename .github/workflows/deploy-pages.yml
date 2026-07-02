@@ -28,19 +28,23 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # The demo lives under /yaycommerce so the gh-pages root stays free
+      # for the main project's build.
       - name: Build static site
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /platfourm2
+          NEXT_PUBLIC_BASE_PATH: /platfourm2/yaycommerce
+          NEXT_PUBLIC_SITE_URL: https://tommyclaude.github.io/platfourm2/yaycommerce
 
-      - name: Disable Jekyll processing
-        run: touch out/.nojekyll
-
-      # Publishing to the gh-pages branch auto-enables GitHub Pages for the
-      # repo; the workflow token cannot enable the newer artifact-based Pages
+      # Publishing to the gh-pages branch works without Pages admin access;
+      # the workflow token cannot enable the newer artifact-based Pages
       # deployment on a repo where Pages has never been turned on.
+      # destination_dir only syncs the yaycommerce/ subfolder, leaving any
+      # other content on the branch untouched. The action also drops a
+      # .nojekyll at the branch root so _next/ assets are served as-is.
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out
+          destination_dir: yaycommerce
