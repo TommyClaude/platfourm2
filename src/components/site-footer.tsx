@@ -26,10 +26,10 @@ const footerColumns = [
   {
     title: "Resources",
     links: [
-      { label: "Documentation", href: "#" },
-      { label: "Changelog", href: "#" },
-      { label: "Support", href: "#" },
-      { label: "Community", href: "#" },
+      { label: "Documentation", href: "https://docs.yaycommerce.com" },
+      { label: "Live demos", href: "https://demo.yaycommerce.com" },
+      { label: "Support", href: "https://yaycommerce.com/support/" },
+      { label: "WordPress.org profile", href: "https://profiles.wordpress.org/yaycommerce/" },
     ],
   },
   {

@@ -27,7 +27,7 @@ function Hero() {
       />
       <Badge
         variant="secondary"
-        className="mb-6 gap-1.5 rounded-full px-3 py-1 text-xs font-normal text-muted-foreground"
+        className="mb-6 gap-1.5 rounded-full px-3 py-1 text-xs font-normal text-foreground/70"
       >
         <span className="inline-block size-1.5 rounded-full bg-brand" />
         New: YayReviews & YayBoost just launched
@@ -150,29 +150,32 @@ function Testimonials() {
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <Card key={testimonial.author} className="gap-4 shadow-none">
-              <CardContent className="space-y-4">
-                <div
-                  className="flex gap-0.5"
-                  aria-label="5 out of 5 stars"
-                >
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Star
-                      key={index}
-                      className="size-4 fill-amber-400 text-amber-400"
-                      aria-hidden="true"
-                    />
-                  ))}
-                </div>
-                <blockquote className="text-sm leading-relaxed">
-                  “{testimonial.quote}”
-                </blockquote>
-                <div>
-                  <p className="text-sm font-medium">{testimonial.author}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {testimonial.role}
-                  </p>
-                </div>
+            <Card key={testimonial.quote} className="gap-4 shadow-none">
+              <CardContent>
+                <figure className="space-y-4">
+                  <div
+                    className="flex gap-0.5"
+                    role="img"
+                    aria-label="Rated 5 out of 5 stars"
+                  >
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <Star
+                        key={index}
+                        className="size-4 fill-amber-400 text-amber-400"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </div>
+                  <blockquote className="text-sm leading-relaxed">
+                    “{testimonial.quote}”
+                  </blockquote>
+                  <figcaption>
+                    <p className="text-sm font-medium">{testimonial.author}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {testimonial.role}
+                    </p>
+                  </figcaption>
+                </figure>
               </CardContent>
             </Card>
           ))}

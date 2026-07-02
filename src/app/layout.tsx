@@ -3,10 +3,32 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://tommyclaude.github.io/platfourm2";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "YayCommerce – WooCommerce Plugins That Help You Sell More",
   description:
-    "Lightweight, easy-to-use WooCommerce plugins trusted by 200,000+ stores. Customize emails, automate pricing, sell in any currency, and more.",
+    "Lightweight, easy-to-use WooCommerce plugins powering 100,000+ websites. Customize emails, automate pricing, sell in any currency, and more.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "YayCommerce",
+    title: "YayCommerce – WooCommerce Plugins That Help You Sell More",
+    description:
+      "Lightweight, easy-to-use WooCommerce plugins powering 100,000+ websites. Customize emails, automate pricing, sell in any currency, and more.",
+    url: "/",
+  },
+  twitter: {
+    card: "summary",
+    title: "YayCommerce – WooCommerce Plugins That Help You Sell More",
+    description:
+      "Lightweight, easy-to-use WooCommerce plugins powering 100,000+ websites.",
+  },
 };
 
 export default function RootLayout({

@@ -33,7 +33,7 @@ export const plugins: Plugin[] = [
       "Design beautiful transactional emails with a live drag-and-drop builder — no coding needed.",
     category: "Emails",
     icon: Mail,
-    href: "/plugins/yaymail",
+    href: "https://wordpress.org/plugins/yaymail/",
     installs: "50,000+",
     rating: 4.8,
     badge: "Most popular",
@@ -46,7 +46,7 @@ export const plugins: Plugin[] = [
       "Automate BOGO deals, tiered discounts, flash sales, and cart rules with flexible conditions.",
     category: "Sales",
     icon: BadgePercent,
-    href: "/plugins/yaypricing",
+    href: "https://wordpress.org/plugins/yaypricing/",
     installs: "3,000+",
   },
   {
@@ -57,7 +57,7 @@ export const plugins: Plugin[] = [
       "Let shoppers browse, check out, and pay in their local currency with automatic exchange rates.",
     category: "Checkout",
     icon: Coins,
-    href: "/plugins/yaycurrency",
+    href: "https://wordpress.org/plugins/yaycurrency/",
     rating: 4.7,
   },
   {
@@ -68,7 +68,7 @@ export const plugins: Plugin[] = [
       "Deliver every email reliably via Amazon SES, SendGrid, Gmail, or any SMTP service — with full logs.",
     category: "Emails",
     icon: Send,
-    href: "/plugins/yaysmtp",
+    href: "https://wordpress.org/plugins/yaysmtp/",
     installs: "10,000+",
     rating: 4.9,
   },
@@ -80,7 +80,7 @@ export const plugins: Plugin[] = [
       "Turn plain variation dropdowns into beautiful color, image, and button swatches that convert.",
     category: "Product Pages",
     icon: Palette,
-    href: "/plugins/yayswatches",
+    href: "https://wordpress.org/plugins/yayswatches/",
   },
   {
     name: "YayExtra",
@@ -90,7 +90,7 @@ export const plugins: Plugin[] = [
       "Add custom option fields — text, checkboxes, swatches, file uploads — to any product page.",
     category: "Product Pages",
     icon: Layers,
-    href: "/plugins/yayextra",
+    href: "https://wordpress.org/plugins/yayextra/",
     installs: "1,000+",
     rating: 4.8,
   },
@@ -102,7 +102,7 @@ export const plugins: Plugin[] = [
       "Collect richer reviews with photos and reminders, then showcase them to build buyer trust.",
     category: "Marketing",
     icon: MessageSquareText,
-    href: "/plugins/yayreviews",
+    href: "https://wordpress.org/plugins/yay-customer-reviews-woocommerce/",
     badge: "New",
   },
   {
@@ -113,7 +113,7 @@ export const plugins: Plugin[] = [
       "Add frequently-bought-together offers, countdowns, and free shipping bars that lift order value.",
     category: "Marketing",
     icon: Rocket,
-    href: "/plugins/yayboost",
+    href: "https://wordpress.org/plugins/yayboost-sales-booster-for-woocommerce/",
     badge: "New",
   },
   {
@@ -124,7 +124,7 @@ export const plugins: Plugin[] = [
       "Take bookings for services and appointments with flexible schedules, staff, and payments.",
     category: "Booking",
     icon: CalendarCheck,
-    href: "/plugins/bookster",
+    href: "https://wordpress.org/plugins/bookster/",
   },
 ];
 

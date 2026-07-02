@@ -11,7 +11,6 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -19,14 +18,19 @@ import { cn } from "@/lib/utils";
 function PluginCard({ plugin }: { plugin: Plugin }) {
   const Icon = plugin.icon;
   return (
-    <a href={plugin.href} className="group block h-full">
+    <a
+      href={plugin.href}
+      className="group block h-full rounded-xl outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+    >
       <Card className="h-full gap-4 shadow-none transition-all group-hover:-translate-y-0.5 group-hover:border-foreground/20 group-hover:shadow-sm">
         <CardHeader className="gap-3">
           <div className="flex size-10 items-center justify-center rounded-lg bg-brand/10 text-brand">
             <Icon className="size-5" aria-hidden="true" />
           </div>
           <div className="flex items-center gap-2">
-            <CardTitle className="text-base">{plugin.name}</CardTitle>
+            <h3 className="text-base leading-none font-semibold">
+              {plugin.name}
+            </h3>
             {plugin.badge ? (
               <Badge
                 variant="secondary"
@@ -57,7 +61,7 @@ function PluginCard({ plugin }: { plugin: Plugin }) {
                 {plugin.rating.toFixed(1)}
               </span>
             ) : null}
-            <span className="ml-auto flex items-center gap-1 font-medium text-foreground opacity-0 transition-opacity group-hover:opacity-100">
+            <span className="ml-auto flex items-center gap-1 font-medium text-foreground opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
               Learn more
               <ArrowRight className="size-3.5" aria-hidden="true" />
             </span>
@@ -149,7 +153,10 @@ function PluginGrid() {
         </div>
       )}
 
-      <p className="text-center text-sm text-muted-foreground">
+      <p
+        aria-live="polite"
+        className="text-center text-sm text-muted-foreground"
+      >
         Showing {filtered.length} of {plugins.length} plugins — and the
         catalog keeps growing.
       </p>
