@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Separator } from "@/components/ui/separator";
 import { Logo } from "@/components/logo";
+import { CurrentYear } from "@/components/current-year";
 
 const footerColumns = [
   {
@@ -17,10 +18,10 @@ const footerColumns = [
   {
     title: "Company",
     links: [
-      { label: "About us", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Contact", href: "#" },
-      { label: "Affiliates", href: "#" },
+      { label: "About us", href: "https://yaycommerce.com/" },
+      { label: "Blog", href: "https://yaycommerce.com/blog/" },
+      { label: "Contact", href: "https://yaycommerce.com/contact/" },
+      { label: "Affiliates", href: "https://yaycommerce.com/affiliate-program/" },
     ],
   },
   {
@@ -35,9 +36,18 @@ const footerColumns = [
   {
     title: "Legal",
     links: [
-      { label: "Terms of service", href: "#" },
-      { label: "Privacy policy", href: "#" },
-      { label: "Refund policy", href: "#" },
+      {
+        label: "Terms & conditions",
+        href: "https://yaycommerce.com/terms-and-conditions/",
+      },
+      {
+        label: "Privacy policy",
+        href: "https://yaycommerce.com/privacy-policy/",
+      },
+      {
+        label: "Affiliate guidelines",
+        href: "https://yaycommerce.com/affiliate-guidelines/",
+      },
     ],
   },
 ];
@@ -77,7 +87,7 @@ function SiteFooter() {
         <Separator className="my-10" />
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} YayCommerce. All rights reserved.
+            © <CurrentYear /> YayCommerce. All rights reserved.
           </p>
           <p className="text-sm text-muted-foreground">
             Made with care for WooCommerce stores worldwide.
