@@ -783,63 +783,69 @@ a.hovered .u-line::after {
 }
 
 /* ==========================================================================
-   Projects — editorial grid, captions below
+   Projects — architectural portfolio grid, portrait imagery
    ========================================================================== */
-
-/* Featured row: hero project (2fr) beside a single card (1fr).
-   Both media share one explicit height so image bottoms line up and
-   the captions below sit on the same baseline. */
-.projects__feature {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: clamp(24px, 3vw, 40px);
-  align-items: start;
-  margin-bottom: clamp(48px, 5vw, 72px);
-}
-
-.projects__feature .project-card__media {
-  height: clamp(300px, 30vw, 520px);
-}
-
-.projects__feature .project-card img {
-  aspect-ratio: auto;
-  height: 100%;
-}
 
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(48px, 5vw, 72px) clamp(24px, 3vw, 40px);
+  gap: clamp(40px, 4vw, 64px) clamp(24px, 3vw, 40px);
 }
 
 .project-card {
   display: block;
 }
 
-.project-card__media { overflow: hidden; }
+.project-card__media {
+  position: relative;
+  overflow: hidden;
+}
 
 .project-card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   transition: opacity 0.4s ease, transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .project-card:hover img {
-  opacity: 0.9;
-  transform: scale(1.05);
+  opacity: 0.95;
+  transform: scale(1.04);
 }
 
-.project-card__body { padding-top: 22px; }
-
+/* category badge — hidden until hover */
 .project-card__tag {
-  display: block;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 2;
+  max-width: calc(100% - 36px);
+  padding: 9px 16px;
+  background: var(--white);
+  color: var(--ink);
   font: var(--label);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--faint);
-  margin-bottom: 10px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
+
+.project-card:hover .project-card__tag {
+  opacity: 1;
+  transform: none;
+}
+
+/* touch devices have no hover — keep the category badge visible */
+@media (hover: none) {
+  .project-card__tag {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.project-card__body { padding-top: 20px; }
 
 .project-card__title {
   font-size: 21px;
@@ -848,23 +854,27 @@ a.hovered .u-line::after {
   transition: opacity 0.25s ease;
 }
 
-.project-card:hover .project-card__title { opacity: 0.65; }
+.project-card:hover .project-card__title { opacity: 0.6; }
 
-.project-card__desc {
-  font-size: 13.5px;
+.project-card__location {
+  font: var(--label);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--faint);
   margin: 0;
-  max-width: 44ch;
 }
 
+/* CTA tile stretches to match the project cards' full height */
 .project-card--cta {
   display: flex;
   align-items: center;
   background: var(--dark);
+  height: 100%;
 }
 
 .project-card--cta .project-card__cta-body {
-  padding: clamp(32px, 3.4vw, 52px);
+  padding: clamp(32px, 3vw, 48px);
 }
 
 .project-card--cta h3 {
@@ -1377,15 +1387,6 @@ a.hovered .u-line::after {
   .services__grid { grid-template-columns: 1fr; }
 
   .projects__grid { grid-template-columns: 1fr; }
-
-  .projects__feature { grid-template-columns: 1fr; }
-
-  .projects__feature .project-card__media { height: auto; }
-
-  .projects__feature .project-card img {
-    aspect-ratio: 4 / 3;
-    height: auto;
-  }
 
   .about__founder { flex-wrap: wrap; }
 
