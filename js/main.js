@@ -105,6 +105,22 @@
   }
   window.addEventListener('scroll', highlightNav, { passive: true });
 
+  /* ---------- Underline hover lock ----------
+     Mirrors the reference theme: on mouseenter the link keeps a
+     .hovered class for 600ms so the underline sweep always completes,
+     even when the pointer only brushes past. */
+  var hoverLinks = document.querySelectorAll(
+    '.nav__link, .footer__col a, .btn--ghost, .header__phone, .footer__line-link, .footer__arrow-link'
+  );
+
+  Array.prototype.forEach.call(hoverLinks, function (el) {
+    el.addEventListener('mouseenter', function () {
+      if (el.classList.contains('hovered')) return;
+      el.classList.add('hovered');
+      setTimeout(function () { el.classList.remove('hovered'); }, 600);
+    });
+  });
+
   /* ---------- Footer year ---------- */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
