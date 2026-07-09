@@ -36,9 +36,12 @@ branch into a repository named `platfourm3` and enable GitHub Pages there
 index.html            Home page
 css/style.css         All styles (responsive, mobile-first breakpoints)
 js/main.js            Header, hero slideshow, scroll reveal, mobile nav
-assets/logo.svg       Color logo (light backgrounds)
-assets/logo-white.svg White logo (dark backgrounds)
-assets/favicon.svg    Fan icon favicon
+assets/img/platfourm-horizontal.png           Horizontal lock-up, dark text (scrolled header)
+assets/img/platfourm-horizontal-white.png     Horizontal lock-up, white text (header over hero)
+assets/img/platfourm-combination-vertical.png Vertical lock-up (footer)
+assets/favicon.png    Fan mark favicon (cropped from the vertical lock-up)
+assets/logo.svg       Legacy SVG logo (unused)
+assets/logo-white.svg Legacy SVG logo (unused)
 assets/img/           Project photography (extracted from company profile PDF)
 ```
 
