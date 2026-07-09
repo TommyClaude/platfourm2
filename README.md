@@ -1,20 +1,47 @@
-# Platfourm — Building & Construction Website
+# Platfourm — Building & Construction Website (v3, minimal edition)
 
 Static marketing website for **Platfourm**, an Australian building & construction
 company (est. 2016) — new builds, renovations and commercial fit-outs for private
 and public sectors.
 
-## Live demo
+**v3** keeps every section and all content of the previous version, restyled with
+a minimal aesthetic inspired by [platfourm.thiswp.io](https://platfourm.thiswp.io/):
+white space, hairline dividers, uppercase letter-spaced micro-labels, flat
+square imagery, and a three-column footer split by vertical rules.
 
-Deployed automatically to GitHub Pages on every push:
-**https://tommyclaude.github.io/platfourm2/**
+## Live URL
+
+Target URL: **https://tommyclaude.github.io/platfourm3/**
+
+All asset paths are relative, so the site works from any base path with no
+build step.
+
+### Deploying to /platfourm3
+
+The `/platfourm3` URL is served by a **separate repository** named
+`platfourm3` (GitHub Pages project URLs always match the repo name). Two ways
+to go live:
+
+1. **Automatic (workflow in this repo):**
+   - Create the `TommyClaude/platfourm3` repository.
+   - Add a classic PAT with `repo` scope as the `PLATFOURM3_TOKEN` secret in
+     *this* repo (`platfourm2` → Settings → Secrets → Actions).
+   - Push to the `v3` branch — `.github/workflows/deploy.yml` publishes the
+     site to `platfourm3`'s `gh-pages` branch.
+   - In `platfourm3` → Settings → Pages, set the source to the `gh-pages`
+     branch (root).
+2. **Manual:** copy the contents of the `v3` branch into the `platfourm3`
+   repository (any branch) and point GitHub Pages at it.
+
+The existing site at `https://tommyclaude.github.io/platfourm2/` is not
+touched by the v3 workflow.
 
 ## Stack
 
 - Pure static HTML / CSS / vanilla JS — no build step required
-- Fonts: [Jost](https://fonts.google.com/specimen/Jost) (headings) + [Inter](https://fonts.google.com/specimen/Inter) (body)
-- Brand colors extracted from the logo: `#02A3DA` (light blue), `#286AA6` (dark blue), `#333333` (charcoal)
-- Logos recreated as SVG (color + white tone) from the original brand asset
+- Fonts: [Jost](https://fonts.google.com/specimen/Jost) (headings + labels) + [Inter](https://fonts.google.com/specimen/Inter) (body)
+- Palette: near-black `#141414`, warm hairline `#e6e3dd`, soft `#f7f5f2`,
+  brand blue `#02A3DA` reserved for the logo mark
 
 ## Structure
 
@@ -30,7 +57,7 @@ assets/img/           Project photography (extracted from company profile PDF)
 
 ## Pages
 
-- **Home** — done (hero, who we are, services, featured projects, why us, contact CTA)
+- **Home** — done (hero, stats, who we are, services, featured projects, why us, contact CTA)
 - About, Projects, Services, Contact Us — planned
 
 ## Local preview
