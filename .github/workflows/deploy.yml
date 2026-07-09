@@ -1,4 +1,4 @@
-name: Deploy v3 to GitHub Pages (platfourm3)
+name: Deploy v3 to GitHub Pages
 
 on:
   push:
@@ -10,35 +10,26 @@ permissions:
   contents: write
 
 concurrency:
-  group: pages-v3
+  group: pages
   cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      PLATFOURM3_TOKEN: ${{ secrets.PLATFOURM3_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # The v3 site is served at https://tommyclaude.github.io/platfourm3 —
-      # that URL belongs to a separate `platfourm3` repository, so this
-      # repo's own gh-pages branch (which serves /platfourm2) is never
-      # touched. Cross-repo publishing needs a classic PAT with `repo`
-      # scope saved as the PLATFOURM3_TOKEN secret; without it the deploy
-      # is skipped so pushes to v3 stay green.
-      - name: Publish to TommyClaude/platfourm3 gh-pages
-        if: env.PLATFOURM3_TOKEN != ''
+      # The v3 site is served at https://tommyclaude.github.io/platfourm2/v3/
+      # destination_dir only syncs the v3/ subfolder of the gh-pages branch,
+      # so the current site at the branch root (/platfourm2) stays untouched.
+      # All asset paths in the site are relative, so no base-path config is
+      # needed.
+      - name: Publish to gh-pages under /v3
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.PLATFOURM3_TOKEN }}
-          external_repository: TommyClaude/platfourm3
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: .
-          force_orphan: true
+          destination_dir: v3
           exclude_assets: '.github'
-
-      - name: Deploy skipped
-        if: env.PLATFOURM3_TOKEN == ''
-        run: echo "PLATFOURM3_TOKEN secret not set — deploy skipped. See README for setup."

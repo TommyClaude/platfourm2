@@ -11,30 +11,17 @@ square imagery, and a three-column footer split by vertical rules.
 
 ## Live URL
 
-Target URL: **https://tommyclaude.github.io/platfourm3/**
+**https://tommyclaude.github.io/platfourm2/v3/**
+
+Every push to the `v3` branch runs `.github/workflows/deploy.yml`, which
+publishes the site into the `v3/` subfolder of the `gh-pages` branch. The
+existing site at the branch root (`/platfourm2/`) is left untouched.
 
 All asset paths are relative, so the site works from any base path with no
-build step.
-
-### Deploying to /platfourm3
-
-The `/platfourm3` URL is served by a **separate repository** named
-`platfourm3` (GitHub Pages project URLs always match the repo name). Two ways
-to go live:
-
-1. **Automatic (workflow in this repo):**
-   - Create the `TommyClaude/platfourm3` repository.
-   - Add a classic PAT with `repo` scope as the `PLATFOURM3_TOKEN` secret in
-     *this* repo (`platfourm2` → Settings → Secrets → Actions).
-   - Push to the `v3` branch — `.github/workflows/deploy.yml` publishes the
-     site to `platfourm3`'s `gh-pages` branch.
-   - In `platfourm3` → Settings → Pages, set the source to the `gh-pages`
-     branch (root).
-2. **Manual:** copy the contents of the `v3` branch into the `platfourm3`
-   repository (any branch) and point GitHub Pages at it.
-
-The existing site at `https://tommyclaude.github.io/platfourm2/` is not
-touched by the v3 workflow.
+build step — to serve it at a different URL such as
+`https://tommyclaude.github.io/platfourm3/`, copy the contents of the `v3`
+branch into a repository named `platfourm3` and enable GitHub Pages there
+(project-site URLs always match the repository name).
 
 ## Stack
 
