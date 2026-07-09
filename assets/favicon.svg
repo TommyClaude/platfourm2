@@ -1,5 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="576" height="576" viewBox="0 0 576 576">
-    <path fill="#02A3DA" d="M 150 411.5 L 14 275.5 C 46 195.5 162 139.5 294 143.5 C 434 151.5 522 215.5 562 283.5 C 526 239.5 430 213.5 322 231.5 L 150 411.5 Z"/>
-    <path fill="#B3B0BC" d="M 304 278.5 L 324 296.5 L 204 432.5 L 184 414.5 Z"/>
-    <path fill="#286AA6" d="M 346 215.5 C 414 199.5 522 223.5 558 275.5 C 546 311.5 486 367.5 426 411.5 C 374 351.5 302 291.5 286 259.5 C 286 239.5 310 219.5 346 215.5 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="576" height="576" viewBox="0 0 600 600">
+  <defs>
+    <linearGradient id="fav-light" x1="0%" y1="0%" x2="85%" y2="70%">
+      <stop offset="0%" stop-color="#55A5FF"/>
+      <stop offset="100%" stop-color="#1E6BF6"/>
+    </linearGradient>
+    <linearGradient id="fav-dark" x1="8%" y1="0%" x2="95%" y2="95%">
+      <stop offset="0%" stop-color="#0A3CA6"/>
+      <stop offset="55%" stop-color="#1A55C9"/>
+      <stop offset="100%" stop-color="#3078EC"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0 122)">
+    <path fill="url(#fav-light)" d="M 52 330 C 96 186, 178 60, 302 26 C 428 62, 508 188, 548 330 C 484 244, 380 205, 302 172 C 224 205, 120 244, 52 330 Z"/>
+    <path fill="url(#fav-dark)" d="M 302 172 C 348 138, 378 92, 400 48 C 470 92, 518 202, 548 330 C 484 244, 380 205, 302 172 Z"/>
+  </g>
 </svg>

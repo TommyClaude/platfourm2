@@ -16,11 +16,23 @@
 </head>
 <body>
 
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-    <symbol id="logo-fan" viewBox="277 13 548 291">
-      <path fill="#02A3DA" d="M 413 282 L 277 146 C 309 66 425 10 557 14 C 697 22 785 86 825 154 C 789 110 693 84 585 102 L 413 282 Z"/>
-      <path fill="#B3B0BC" d="M 567 149 L 587 167 L 467 303 L 447 285 Z"/>
-      <path fill="#286AA6" d="M 609 86 C 677 70 785 94 821 146 C 809 182 749 238 689 282 C 637 222 565 162 549 130 C 549 110 573 90 609 86 Z"/>
+  <!-- SVG sprite: hidden via 0x0 box (not display:none, which would disable
+       the gradient defs referenced by the logo paths) -->
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="logo-grad-light" x1="0%" y1="0%" x2="85%" y2="70%">
+        <stop offset="0%" stop-color="#55A5FF"/>
+        <stop offset="100%" stop-color="#1E6BF6"/>
+      </linearGradient>
+      <linearGradient id="logo-grad-dark" x1="8%" y1="0%" x2="95%" y2="95%">
+        <stop offset="0%" stop-color="#0A3CA6"/>
+        <stop offset="55%" stop-color="#1A55C9"/>
+        <stop offset="100%" stop-color="#3078EC"/>
+      </linearGradient>
+    </defs>
+    <symbol id="logo-fan" viewBox="0 0 600 360">
+      <path fill="url(#logo-grad-light)" d="M 52 330 C 96 186, 178 60, 302 26 C 428 62, 508 188, 548 330 C 484 244, 380 205, 302 172 C 224 205, 120 244, 52 330 Z"/>
+      <path fill="url(#logo-grad-dark)" d="M 302 172 C 348 138, 378 92, 400 48 C 470 92, 518 202, 548 330 C 484 244, 380 205, 302 172 Z"/>
     </symbol>
   </svg>
 
