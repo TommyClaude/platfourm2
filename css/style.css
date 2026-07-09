@@ -786,6 +786,26 @@ a.hovered .u-line::after {
    Projects — editorial grid, captions below
    ========================================================================== */
 
+/* Featured row: hero project (2fr) beside a single card (1fr).
+   Both media share one explicit height so image bottoms line up and
+   the captions below sit on the same baseline. */
+.projects__feature {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: clamp(24px, 3vw, 40px);
+  align-items: start;
+  margin-bottom: clamp(48px, 5vw, 72px);
+}
+
+.projects__feature .project-card__media {
+  height: clamp(300px, 30vw, 520px);
+}
+
+.projects__feature .project-card img {
+  aspect-ratio: auto;
+  height: 100%;
+}
+
 .projects__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -809,10 +829,6 @@ a.hovered .u-line::after {
   opacity: 0.9;
   transform: scale(1.05);
 }
-
-.project-card--feature { grid-column: span 2; }
-
-.project-card--feature img { aspect-ratio: 16 / 9; }
 
 .project-card__body { padding-top: 22px; }
 
@@ -1241,8 +1257,6 @@ a.hovered .u-line::after {
 
   .projects__grid { grid-template-columns: repeat(2, 1fr); }
 
-  .project-card--feature { grid-column: span 2; }
-
   .footer__grid,
   .footer__bottom-grid {
     grid-template-columns: 1fr;
@@ -1364,9 +1378,14 @@ a.hovered .u-line::after {
 
   .projects__grid { grid-template-columns: 1fr; }
 
-  .project-card--feature { grid-column: auto; }
+  .projects__feature { grid-template-columns: 1fr; }
 
-  .project-card--feature img { aspect-ratio: 4 / 3; }
+  .projects__feature .project-card__media { height: auto; }
+
+  .projects__feature .project-card img {
+    aspect-ratio: 4 / 3;
+    height: auto;
+  }
 
   .about__founder { flex-wrap: wrap; }
 
