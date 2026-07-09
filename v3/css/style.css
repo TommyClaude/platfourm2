@@ -233,31 +233,25 @@ ul { padding: 0; margin: 0; list-style: none; }
 
 .header.is-scrolled .header__inner { height: 72px; }
 
-/* Horizontal lock-up: fan mark left, wordmark right. The wordmark uses
-   currentColor so it is white over the hero and flips to ink when the
-   header gains its white scrolled background. */
+/* Horizontal lock-up. The white-text variant sits over the hero; the
+   dark-text original takes over when the header gains its white
+   background (scrolled or with the mobile menu open). */
 .header__logo {
   display: inline-flex;
-  align-items: center;
-  gap: 13px;
-  color: currentColor;
 }
 
-.header__logo-mark {
-  width: 50px;
+.header__logo-img {
   height: 24px;
-  flex-shrink: 0;
+  width: auto;
 }
 
-.header__logo-text {
-  font-family: var(--font-head);
-  font-size: 21px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  line-height: 1;
-  transform: translateY(1px);
-}
+.header__logo-img--dark { display: none; }
+
+.header.is-scrolled .header__logo-img--light,
+.header.nav-open .header__logo-img--light { display: none; }
+
+.header.is-scrolled .header__logo-img--dark,
+.header.nav-open .header__logo-img--dark { display: block; }
 
 .nav__list {
   display: flex;
@@ -950,27 +944,10 @@ ul { padding: 0; margin: 0; list-style: none; }
   gap: 30px;
 }
 
-/* Vertical lock-up: fan mark stacked above the wordmark */
+/* Vertical lock-up */
 .footer__logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-  color: var(--ink);
-}
-
-.footer__logo-mark {
-  width: 140px;
-  height: 68px;
-}
-
-.footer__logo-text {
-  font-family: var(--font-head);
-  font-size: 31px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1;
+  width: min(220px, 65%);
+  height: auto;
 }
 
 .footer__brand p {

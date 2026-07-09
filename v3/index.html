@@ -9,39 +9,19 @@
   <meta property="og:description" content="From concept to completion. New builds, renovations and commercial fit-outs across NSW, Australia.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/img/genesian-stair.jpg">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- SVG sprite: hidden via 0x0 box (not display:none, which would disable
-       the gradient defs referenced by the logo paths) -->
-  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-      <linearGradient id="logo-grad-light" x1="0%" y1="0%" x2="70%" y2="100%">
-        <stop offset="0%" stop-color="#4AA3FF"/>
-        <stop offset="100%" stop-color="#2374F3"/>
-      </linearGradient>
-      <linearGradient id="logo-grad-dark" x1="0%" y1="0%" x2="95%" y2="100%">
-        <stop offset="0%" stop-color="#0E3B8E"/>
-        <stop offset="45%" stop-color="#1E5FD0"/>
-        <stop offset="100%" stop-color="#2F80F5"/>
-      </linearGradient>
-    </defs>
-    <symbol id="logo-fan" viewBox="0 0 600 290">
-      <path fill="url(#logo-grad-dark)" d="M 302 168 C 352 146, 408 114, 444 84 C 494 108, 558 188, 590 285 Z"/>
-      <path fill="url(#logo-grad-light)" d="M 10 285 C 58 142, 148 32, 268 14 C 342 6, 412 36, 448 78 C 406 112, 352 144, 302 168 Z"/>
-    </symbol>
-  </svg>
-
   <!-- ============ HEADER ============ -->
   <header class="header" id="header">
     <div class="container header__inner">
       <a href="index.html" class="header__logo" aria-label="Platfourm — home">
-        <svg class="header__logo-mark" aria-hidden="true"><use href="#logo-fan"/></svg>
-        <span class="header__logo-text">Platfourm</span>
+        <img class="header__logo-img header__logo-img--light" src="assets/img/platfourm-horizontal-white.png" width="900" height="80" alt="">
+        <img class="header__logo-img header__logo-img--dark" src="assets/img/platfourm-horizontal.png" width="900" height="80" alt="">
       </a>
 
       <nav class="nav" id="nav" aria-label="Main navigation">
@@ -397,10 +377,7 @@
       </div>
 
       <div class="footer__cell footer__brand">
-        <span class="footer__logo" role="img" aria-label="Platfourm">
-          <svg class="footer__logo-mark" aria-hidden="true"><use href="#logo-fan"/></svg>
-          <span class="footer__logo-text">Platfourm</span>
-        </span>
+        <img class="footer__logo" src="assets/img/platfourm-combination-vertical.png" width="602" height="300" alt="Platfourm">
         <p>
           Australian building &amp; construction company. Client-focused from
           concept to completion — new builds, renovations and fit-outs for
