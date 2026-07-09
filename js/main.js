@@ -32,9 +32,9 @@
   var dotsWrap = document.getElementById('heroDots');
   var captionText = document.querySelector('.hero__caption-text');
   var captions = [
-    'Genesian Theatre — Commercial Fit-out',
-    'New Build Duplex — Mudgee NSW',
-    'Sydney Airport — T2 Foodcourt Upgrade'
+    'Genesian Theatre — Grand Staircase',
+    'Genesian Theatre — Foyer & Bar',
+    'Genesian Theatre — Auditorium'
   ];
   var current = 0;
   var timer = null;
