@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="576" height="576" viewBox="0 0 600 600">
   <defs>
-    <linearGradient id="fav-light" x1="0%" y1="0%" x2="85%" y2="70%">
-      <stop offset="0%" stop-color="#55A5FF"/>
-      <stop offset="100%" stop-color="#1E6BF6"/>
+    <linearGradient id="fav-light" x1="0%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#4AA3FF"/>
+      <stop offset="100%" stop-color="#2374F3"/>
     </linearGradient>
-    <linearGradient id="fav-dark" x1="8%" y1="0%" x2="95%" y2="95%">
-      <stop offset="0%" stop-color="#0A3CA6"/>
-      <stop offset="55%" stop-color="#1A55C9"/>
-      <stop offset="100%" stop-color="#3078EC"/>
+    <linearGradient id="fav-dark" x1="0%" y1="0%" x2="95%" y2="100%">
+      <stop offset="0%" stop-color="#0E3B8E"/>
+      <stop offset="45%" stop-color="#1E5FD0"/>
+      <stop offset="100%" stop-color="#2F80F5"/>
     </linearGradient>
   </defs>
-  <g transform="translate(0 122)">
-    <path fill="url(#fav-light)" d="M 52 330 C 96 186, 178 60, 302 26 C 428 62, 508 188, 548 330 C 484 244, 380 205, 302 172 C 224 205, 120 244, 52 330 Z"/>
-    <path fill="url(#fav-dark)" d="M 302 172 C 348 138, 378 92, 400 48 C 470 92, 518 202, 548 330 C 484 244, 380 205, 302 172 Z"/>
+  <g transform="translate(0 155)">
+    <path fill="url(#fav-dark)" d="M 302 168 C 352 146, 408 114, 444 84 C 494 108, 558 188, 590 285 Z"/>
+    <path fill="url(#fav-light)" d="M 10 285 C 58 142, 148 32, 268 14 C 342 6, 412 36, 448 78 C 406 112, 352 144, 302 168 Z"/>
   </g>
 </svg>

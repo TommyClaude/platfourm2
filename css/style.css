@@ -244,8 +244,8 @@ ul { padding: 0; margin: 0; list-style: none; }
 }
 
 .header__logo-mark {
-  width: 43px;
-  height: 26px;
+  width: 50px;
+  height: 24px;
   flex-shrink: 0;
 }
 
@@ -960,8 +960,8 @@ ul { padding: 0; margin: 0; list-style: none; }
 }
 
 .footer__logo-mark {
-  width: 132px;
-  height: 79px;
+  width: 140px;
+  height: 68px;
 }
 
 .footer__logo-text {
