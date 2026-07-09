@@ -192,32 +192,56 @@ ul { padding: 0; margin: 0; list-style: none; }
   color: var(--ink);
 }
 
-/* signature underline wipe: the line exits right, re-enters from the left */
-@keyframes underline-wipe {
-  0% { transform: scaleX(1); transform-origin: right; }
-  45% { transform: scaleX(0); transform-origin: right; }
-  55% { transform: scaleX(0); transform-origin: left; }
-  100% { transform: scaleX(1); transform-origin: left; }
+/* signature dual-line underline (values lifted from the reference theme):
+   on hover the resting line rushes out to the right (0.5s) while a new
+   line grows in from the left (0.65s), overlapping in time */
+@keyframes underline-in-left {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
 }
 
-/* underlined text link with arrow */
-.btn--ghost {
+@keyframes underline-out-right {
+  0% { transform: scaleX(0.8); }
+  100% { transform: scaleX(0); }
+}
+
+.u-line {
   position: relative;
-  padding: 0 0 6px;
-  border: 0;
-  letter-spacing: var(--track);
+  display: inline-block;
+  padding-bottom: 6px;
 }
 
-.btn--ghost::before {
+.u-line::before,
+.u-line::after {
   content: "";
   position: absolute;
   inset: auto 0 0;
   height: 1px;
   background: currentColor;
+  will-change: transform;
 }
 
-.btn--ghost:hover::before {
-  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
+.u-line::before { transform-origin: left center; }
+
+.u-line::after {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+a:hover .u-line::before {
+  animation: underline-in-left 0.65s ease forwards;
+}
+
+a:hover .u-line::after {
+  animation: underline-out-right 0.5s ease forwards;
+}
+
+/* underlined text link with arrow */
+.btn--ghost {
+  padding: 0;
+  border: 0;
+  align-items: baseline;
+  letter-spacing: var(--track);
 }
 
 .btn--ghost::after {
@@ -306,28 +330,28 @@ ul { padding: 0; margin: 0; list-style: none; }
   color: currentColor;
   opacity: 0.72;
   padding: 8px 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, background-size 0.5s, background-position 0.5s;
 }
 
-/* underline enters from the left, exits to the right */
-.nav__link::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 2px;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1);
+/* sweeping underline: size and position transition together (reference) */
+.nav__link {
+  background-image: linear-gradient(currentColor 0 0);
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 calc(100% - 2px);
 }
 
 .nav__link:hover,
 .nav__link.is-active { opacity: 1; }
 
-.nav__link:hover::after,
-.nav__link.is-active::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.nav__link:hover {
+  background-size: 100% 1px;
+  background-position: 100% calc(100% - 2px);
+}
+
+.nav__link.is-active {
+  background-size: 100% 1px;
+  background-position: 0 calc(100% - 2px);
 }
 
 /* solid white box with underlined label, like the reference header CTA */
@@ -343,22 +367,7 @@ ul { padding: 0; margin: 0; list-style: none; }
   transition: background 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
 }
 
-.header__phone span {
-  position: relative;
-  padding-bottom: 2px;
-}
-
-.header__phone span::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 1px;
-  background: currentColor;
-}
-
-.header__phone:hover span::after {
-  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
-}
+.header__phone .u-line { padding-bottom: 2px; }
 
 .header__phone:hover {
   background: var(--ink);
@@ -990,26 +999,14 @@ ul { padding: 0; margin: 0; list-style: none; }
 }
 
 .footer__line-link {
-  position: relative;
   font: var(--label);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
-  padding-bottom: 7px;
 }
 
-.footer__line-link::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 1px;
-  background: currentColor;
-}
-
-.footer__line-link:hover::after {
-  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
-}
+.footer__line-link .u-line { padding-bottom: 7px; }
 
 .footer__person {
   font: var(--label);
@@ -1027,28 +1024,16 @@ ul { padding: 0; margin: 0; list-style: none; }
 }
 
 .footer__arrow-link {
-  position: relative;
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   gap: 10px;
   font-family: var(--font-head);
   font-size: 15px;
   color: var(--ink);
-  padding-bottom: 4px;
   margin-top: 8px;
 }
 
-.footer__arrow-link::before {
-  content: "";
-  position: absolute;
-  inset: auto 0 0;
-  height: 1px;
-  background: currentColor;
-}
-
-.footer__arrow-link:hover::before {
-  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
-}
+.footer__arrow-link .u-line { padding-bottom: 4px; }
 
 .footer__arrow-link::after {
   content: "\2192";
@@ -1100,7 +1085,6 @@ ul { padding: 0; margin: 0; list-style: none; }
 .footer__col li { margin-bottom: 15px; }
 
 .footer__col a {
-  position: relative;
   display: inline-block;
   font: var(--label);
   font-size: 11.5px;
@@ -1108,25 +1092,21 @@ ul { padding: 0; margin: 0; list-style: none; }
   text-transform: uppercase;
   color: var(--ink);
   opacity: 0.8;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, background-size 0.5s, background-position 0.5s;
 }
 
-.footer__col a::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 -3px;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1);
+.footer__col a {
+  padding-bottom: 3px;
+  background-image: linear-gradient(currentColor 0 0);
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 100%;
 }
 
-.footer__col a:hover { opacity: 1; }
-
-.footer__col a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.footer__col a:hover {
+  opacity: 1;
+  background-size: 100% 1px;
+  background-position: 100% 100%;
 }
 
 /* bottom bar — dividers continue through */
@@ -1230,8 +1210,8 @@ ul { padding: 0; margin: 0; list-style: none; }
   .hero__slide { transition: opacity 0.8s ease; transform: none; }
   .hero__scroll svg { animation: none; }
 
-  .nav__link::after,
-  .footer__col a::after,
+  .nav__link,
+  .footer__col a,
   .btn:not(.btn--ghost)::before,
   .project-card img,
   .footer__social a,
@@ -1239,10 +1219,8 @@ ul { padding: 0; margin: 0; list-style: none; }
     transition: none;
   }
 
-  .btn--ghost:hover::before,
-  .header__phone:hover span::after,
-  .footer__line-link:hover::after,
-  .footer__arrow-link:hover::before {
+  a:hover .u-line::before,
+  a:hover .u-line::after {
     animation: none;
   }
 }
@@ -1354,8 +1332,6 @@ ul { padding: 0; margin: 0; list-style: none; }
     opacity: 1;
     padding: 10px 0;
   }
-
-  .nav__link.is-active { border-bottom: 1px solid var(--ink); }
 
   .hero__caption { display: none; }
 
