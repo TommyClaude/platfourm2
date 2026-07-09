@@ -192,12 +192,32 @@ ul { padding: 0; margin: 0; list-style: none; }
   color: var(--ink);
 }
 
+/* signature underline wipe: the line exits right, re-enters from the left */
+@keyframes underline-wipe {
+  0% { transform: scaleX(1); transform-origin: right; }
+  45% { transform: scaleX(0); transform-origin: right; }
+  55% { transform: scaleX(0); transform-origin: left; }
+  100% { transform: scaleX(1); transform-origin: left; }
+}
+
 /* underlined text link with arrow */
 .btn--ghost {
+  position: relative;
   padding: 0 0 6px;
   border: 0;
-  border-bottom: 1px solid currentColor;
   letter-spacing: var(--track);
+}
+
+.btn--ghost::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: currentColor;
+}
+
+.btn--ghost:hover::before {
+  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
 }
 
 .btn--ghost::after {
@@ -289,7 +309,7 @@ ul { padding: 0; margin: 0; list-style: none; }
   transition: opacity 0.3s ease;
 }
 
-/* underline slides in from the left */
+/* underline enters from the left, exits to the right */
 .nav__link::after {
   content: "";
   position: absolute;
@@ -297,15 +317,18 @@ ul { padding: 0; margin: 0; list-style: none; }
   height: 1px;
   background: currentColor;
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1);
 }
 
 .nav__link:hover,
 .nav__link.is-active { opacity: 1; }
 
 .nav__link:hover::after,
-.nav__link.is-active::after { transform: scaleX(1); }
+.nav__link.is-active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
 /* solid white box with underlined label, like the reference header CTA */
 .header__phone {
@@ -321,8 +344,20 @@ ul { padding: 0; margin: 0; list-style: none; }
 }
 
 .header__phone span {
-  border-bottom: 1px solid currentColor;
+  position: relative;
   padding-bottom: 2px;
+}
+
+.header__phone span::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: currentColor;
+}
+
+.header__phone:hover span::after {
+  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
 }
 
 .header__phone:hover {
@@ -955,16 +990,26 @@ ul { padding: 0; margin: 0; list-style: none; }
 }
 
 .footer__line-link {
+  position: relative;
   font: var(--label);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
   padding-bottom: 7px;
-  border-bottom: 1px solid var(--ink);
 }
 
-.footer__line-link:hover { opacity: 0.6; }
+.footer__line-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: currentColor;
+}
+
+.footer__line-link:hover::after {
+  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
+}
 
 .footer__person {
   font: var(--label);
@@ -982,15 +1027,27 @@ ul { padding: 0; margin: 0; list-style: none; }
 }
 
 .footer__arrow-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
   font-family: var(--font-head);
   font-size: 15px;
   color: var(--ink);
-  border-bottom: 1px solid var(--ink);
   padding-bottom: 4px;
   margin-top: 8px;
+}
+
+.footer__arrow-link::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: currentColor;
+}
+
+.footer__arrow-link:hover::before {
+  animation: underline-wipe 0.7s cubic-bezier(0.6, 0, 0.2, 1);
 }
 
 .footer__arrow-link::after {
@@ -1061,13 +1118,16 @@ ul { padding: 0; margin: 0; list-style: none; }
   height: 1px;
   background: currentColor;
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s ease;
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.6, 0, 0.2, 1);
 }
 
 .footer__col a:hover { opacity: 1; }
 
-.footer__col a:hover::after { transform: scaleX(1); }
+.footer__col a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
 /* bottom bar — dividers continue through */
 .footer__bottom {
@@ -1177,6 +1237,13 @@ ul { padding: 0; margin: 0; list-style: none; }
   .footer__social a,
   .nav__list li {
     transition: none;
+  }
+
+  .btn--ghost:hover::before,
+  .header__phone:hover span::after,
+  .footer__line-link:hover::after,
+  .footer__arrow-link:hover::before {
+    animation: none;
   }
 }
 
