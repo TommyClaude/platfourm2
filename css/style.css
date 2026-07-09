@@ -345,6 +345,10 @@ ul { padding: 0; margin: 0; list-style: none; }
   animation: kenburns 8s ease-out forwards;
 }
 
+.hero__slide {
+  filter: brightness(0.72) saturate(0.9);
+}
+
 @keyframes kenburns {
   from { transform: scale(1); }
   to   { transform: scale(1.08); }
@@ -354,7 +358,8 @@ ul { padding: 0; margin: 0; list-style: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(100deg, rgba(15, 30, 44, 0.88) 0%, rgba(15, 30, 44, 0.55) 52%, rgba(15, 30, 44, 0.25) 100%);
+    linear-gradient(to top, rgba(11, 23, 35, 0.75) 0%, rgba(11, 23, 35, 0) 40%),
+    linear-gradient(100deg, rgba(11, 23, 35, 0.92) 0%, rgba(11, 23, 35, 0.68) 52%, rgba(13, 27, 41, 0.38) 100%);
 }
 
 .hero__content {
@@ -378,6 +383,7 @@ ul { padding: 0; margin: 0; list-style: none; }
   font-weight: 500;
   color: var(--white);
   margin-bottom: 22px;
+  text-shadow: 0 2px 24px rgba(11, 23, 35, 0.55);
 }
 
 .hero__title .accent {
@@ -390,8 +396,9 @@ ul { padding: 0; margin: 0; list-style: none; }
 .hero__text {
   max-width: 560px;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 36px;
+  text-shadow: 0 1px 12px rgba(11, 23, 35, 0.6);
 }
 
 .hero__actions { display: flex; flex-wrap: wrap; gap: 16px; }
