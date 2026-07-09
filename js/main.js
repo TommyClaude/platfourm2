@@ -107,10 +107,12 @@
 
   /* ---------- Underline hover lock ----------
      Mirrors the reference theme: on mouseenter the link keeps a
-     .hovered class for 600ms so the underline sweep always completes,
-     even when the pointer only brushes past. */
+     .hovered class for 600ms so the dual-line underline animation
+     always completes, even when the pointer only brushes past.
+     (Nav and footer menu links use the simple slide-in underline
+     instead, so they are not included.) */
   var hoverLinks = document.querySelectorAll(
-    '.nav__link, .footer__col a, .btn--ghost, .header__phone, .footer__line-link, .footer__arrow-link'
+    '.btn--ghost, .header__phone, .footer__line-link, .footer__arrow-link'
   );
 
   Array.prototype.forEach.call(hoverLinks, function (el) {
