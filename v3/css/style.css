@@ -1526,6 +1526,14 @@ body.modal-open { overflow: hidden; }
 
   .hero__caption { display: none; }
 
+  /* keep the eyebrow badge on a single line on phones */
+  .hero__eyebrow {
+    gap: 9px;
+    padding: 9px 15px;
+    font-size: 10px;
+    letter-spacing: 0.13em;
+  }
+
   .hero__dots { right: var(--gutter); bottom: 40px; }
 
   .hero__scroll { display: none; }
@@ -1577,4 +1585,15 @@ body.modal-open { overflow: hidden; }
   .hero__actions .btn:not(.btn--ghost) { width: 100%; }
 
   .cta__actions { flex-direction: column; }
+}
+
+@media (max-width: 380px) {
+  /* tighten the eyebrow badge a touch more so the full label still
+     fits on a single line on the narrowest phones (down to 320px) */
+  .hero__eyebrow {
+    gap: 8px;
+    padding: 8px 13px;
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+  }
 }
