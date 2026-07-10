@@ -468,11 +468,28 @@ a.hovered .u-line::after {
 }
 
 .hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 20px 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(10, 10, 10, 0.22);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   font: var(--label);
-  letter-spacing: 0.32em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
-  margin: 0 0 28px;
+  color: #fff;
+  margin: 0 0 26px;
+}
+
+.hero__eyebrow::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
 }
 
 .hero__title {
@@ -680,17 +697,28 @@ a.hovered .u-line::after {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 40px;
-  margin: 34px 0 42px;
+  row-gap: 4px;
+  margin: 32px 0 42px;
 }
 
 .about__list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font: var(--label);
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
-  padding: 15px 0;
-  border-top: 1px solid var(--line);
+  padding: 9px 0;
+}
+
+.about__list li::before {
+  content: "";
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2302a3da' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .about__founder {
