@@ -1,14 +1,14 @@
-# Platfourm — Building & Construction Website (v4, minimal edition)
+# Platfourm — Building & Construction Website (v4, construction edition)
 
 Static marketing website for **Platfourm**, an Australian building & construction
 company (est. 2016) — new builds, renovations and commercial fit-outs for private
 and public sectors.
 
-**v4** continues from `v3` — a minimal aesthetic inspired by
-[platfourm.thiswp.io](https://platfourm.thiswp.io/): white space, hairline
-dividers, uppercase letter-spaced micro-labels, high-res project photography
-with click-to-open detail modals, and a three-column footer split by vertical
-rules.
+**v4** restyles `v3` in a bold construction-industry aesthetic while keeping
+every section's content and imagery unchanged: dark steel surfaces + safety
+yellow `#FFB400`, hazard-tape stripes, blueprint grids on dark plates,
+chamfered corners, hard offset shadows, condensed uppercase Oswald headlines,
+stencilled index stamps, and click-to-open project detail modals.
 
 ## Live URL
 
@@ -24,9 +24,9 @@ build step.
 ## Stack
 
 - Pure static HTML / CSS / vanilla JS — no build step required
-- Fonts: [Jost](https://fonts.google.com/specimen/Jost) (headings + labels) + [Inter](https://fonts.google.com/specimen/Inter) (body)
-- Palette: near-black `#141414`, warm hairline `#e6e3dd`, soft `#f7f5f2`,
-  brand blue `#02A3DA` reserved for the logo mark
+- Fonts: [Oswald](https://fonts.google.com/specimen/Oswald) (headings + labels) + [Inter](https://fonts.google.com/specimen/Inter) (body)
+- Palette: steel `#15181d` / `#1b1f25`, safety yellow `#FFB400`, concrete
+  `#f1efe9`, brand blue reserved for the logo mark
 
 ## Structure
 
