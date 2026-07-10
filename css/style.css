@@ -485,7 +485,6 @@ a.hovered .u-line::after {
 }
 
 .hero__title .accent {
-  font-style: italic;
   font-weight: 400;
 }
 
