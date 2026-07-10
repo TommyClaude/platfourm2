@@ -1,0 +1,5 @@
+# Local preview / dev artifacts (not part of the site)
+serve/
+chrome-profile/
+*.log
+.DS_Store
