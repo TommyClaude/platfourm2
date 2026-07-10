@@ -48,6 +48,10 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  /* stop the mobile rubber-band bounce from revealing a blank white
+     strip past the footer when you scroll to the very bottom */
+  overscroll-behavior-y: none;
+  background: var(--white);
 }
 
 body {
@@ -57,6 +61,7 @@ body {
   line-height: 1.8;
   color: var(--body);
   background: var(--white);
+  overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
 }
 
