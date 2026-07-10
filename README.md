@@ -1,27 +1,25 @@
-# Platfourm — Building & Construction Website (v3, minimal edition)
+# Platfourm — Building & Construction Website (v4, minimal edition)
 
 Static marketing website for **Platfourm**, an Australian building & construction
 company (est. 2016) — new builds, renovations and commercial fit-outs for private
 and public sectors.
 
-**v3** keeps every section and all content of the previous version, restyled with
-a minimal aesthetic inspired by [platfourm.thiswp.io](https://platfourm.thiswp.io/):
-white space, hairline dividers, uppercase letter-spaced micro-labels, flat
-square imagery, and a three-column footer split by vertical rules.
+**v4** continues from `v3` — a minimal aesthetic inspired by
+[platfourm.thiswp.io](https://platfourm.thiswp.io/): white space, hairline
+dividers, uppercase letter-spaced micro-labels, high-res project photography
+with click-to-open detail modals, and a three-column footer split by vertical
+rules.
 
 ## Live URL
 
-**https://tommyclaude.github.io/platfourm2/v3/**
+**https://tommyclaude.github.io/platfourm2/v4/**
 
-Every push to the `v3` branch runs `.github/workflows/deploy.yml`, which
-publishes the site into the `v3/` subfolder of the `gh-pages` branch. The
-existing site at the branch root (`/platfourm2/`) is left untouched.
+Every push to the `v4` branch runs `.github/workflows/deploy.yml`, which
+publishes the site into the `v4/` subfolder of the `gh-pages` branch. The
+root site (`/platfourm2/`) and `/platfourm2/v3/` are left untouched.
 
 All asset paths are relative, so the site works from any base path with no
-build step — to serve it at a different URL such as
-`https://tommyclaude.github.io/platfourm3/`, copy the contents of the `v3`
-branch into a repository named `platfourm3` and enable GitHub Pages there
-(project-site URLs always match the repository name).
+build step.
 
 ## Stack
 

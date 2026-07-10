@@ -1,17 +1,19 @@
-name: Deploy v3 to GitHub Pages
+name: Deploy v4 to GitHub Pages
 
 on:
   push:
     branches:
-      - v3
+      - v4
   workflow_dispatch:
 
 permissions:
   contents: write
 
+# Share one queue with the other version deploys so simultaneous runs
+# never race on the gh-pages branch. Do not cancel an in-flight deploy.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -20,16 +22,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # The v3 site is served at https://tommyclaude.github.io/platfourm2/v3/
-      # destination_dir only syncs the v3/ subfolder of the gh-pages branch,
-      # so the current site at the branch root (/platfourm2) stays untouched.
-      # All asset paths in the site are relative, so no base-path config is
-      # needed.
-      - name: Publish to gh-pages under /v3
+      # The v4 site is served at https://tommyclaude.github.io/platfourm2/v4/
+      # destination_dir only syncs the v4/ subfolder of the gh-pages branch,
+      # so /platfourm2 (root) and /platfourm2/v3 stay untouched. All asset
+      # paths in the site are relative, so no base-path config is needed.
+      - name: Publish to gh-pages under /v4
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: .
-          destination_dir: v3
+          destination_dir: v4
           exclude_assets: '.github'
