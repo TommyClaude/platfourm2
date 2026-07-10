@@ -26,8 +26,9 @@ build step.
 - Pure static HTML / CSS / vanilla JS — no build step required
 - Fonts: [Oswald](https://fonts.google.com/specimen/Oswald) (headings + labels) + [Inter](https://fonts.google.com/specimen/Inter) (body)
 - Palette: steel `#15181d` / `#1b1f25`, safety yellow `#FFB400`, concrete
-  `#f1efe9`; the logo's blue fan mark is recoloured to an amber gradient
-  via a CSS filter (`--gold-logo`) so the lock-up sits in the yellow theme
+  `#f1efe9`; dedicated gold-mark logo variants
+  (`platfourm-horizontal-gold.png`, `platfourm-vertical-gold.png`) keep the
+  fan mark in a safety-yellow gradient with a white wordmark
 
 ## Structure
 
