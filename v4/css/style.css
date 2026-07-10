@@ -52,6 +52,11 @@
   --chamfer: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
   --chamfer-sm: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 0 100%);
 
+  /* recolours the lock-up's blue fan mark to an amber gradient while
+     leaving the (hueless) white/black wordmark essentially untouched:
+     grayscale flattens the blues, sepia+saturate re-tints toward gold */
+  --gold-logo: grayscale(1) sepia(1) saturate(4) brightness(1.15) hue-rotate(-6deg);
+
   --container: 1700px;
   --gutter: 48px;
   --header-h: 96px;
@@ -341,6 +346,7 @@ a.hovered .u-line::after {
 .header__logo-img {
   height: 24px;
   width: auto;
+  filter: var(--gold-logo);
 }
 
 .header__logo-img--dark { display: none; }
@@ -1425,6 +1431,8 @@ body.modal-open { overflow: hidden; }
   background: var(--white);
   padding: 26px 30px;
   clip-path: var(--chamfer);
+  /* also warms the white plate to cream — a stamped brand-plate look */
+  filter: var(--gold-logo);
 }
 
 .footer__brand p {
