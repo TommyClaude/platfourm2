@@ -460,9 +460,10 @@ a.hovered .u-line::after {
     linear-gradient(to bottom, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0) 260px),
     linear-gradient(
       to top,
-      rgba(10, 10, 10, 0.72) 0%,
-      rgba(10, 10, 10, 0.28) 45%,
-      rgba(10, 10, 10, 0.22) 100%
+      rgba(10, 10, 10, 0.86) 0%,
+      rgba(10, 10, 10, 0.62) 30%,
+      rgba(10, 10, 10, 0.36) 55%,
+      rgba(10, 10, 10, 0.24) 100%
     );
 }
 
