@@ -1746,8 +1746,10 @@ body.home main { padding-top: 0; }
 .cta .pfbtn--white .wp-block-button__link:hover { color: var(--white); border-color: var(--ink); }
 .cta .pfbtn--ghost .wp-block-button__link { color: var(--ink); }
 
-/* footer email/phone are native paragraph links — restore the hover underline */
-.footer__contact .footer__line-link { margin: 0 0 20px; }
+/* footer email/phone are native paragraph links — restore the hover underline.
+   The container already provides a flex gap, so the paragraphs carry no margin. */
+.footer__contact .footer__line-link,
+.footer__contact .footer__person { margin: 0; }
 .footer__line-link a { position: relative; color: inherit; display: inline-block; }
 .footer__line-link a::after {
   content: "";
