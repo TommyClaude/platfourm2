@@ -36,11 +36,11 @@ foreach ( array( 'image1' => 'hero-1', 'image2' => 'hero-2', 'image3' => 'hero-3
 
 <!-- wp:buttons {"className":"hero__actions"} -->
 <div class="wp-block-buttons hero__actions">
-<!-- wp:button {"className":"btn btn--primary"} -->
-<div class="wp-block-button btn btn--primary"><a class="wp-block-button__link wp-element-button" href="#projects">View Our Projects</a></div>
+<!-- wp:button {"className":"pfbtn pfbtn--primary"} -->
+<div class="wp-block-button pfbtn pfbtn--primary"><a class="wp-block-button__link wp-element-button" href="#projects">View Our Projects</a></div>
 <!-- /wp:button -->
-<!-- wp:button {"className":"btn btn--ghost"} -->
-<div class="wp-block-button btn btn--ghost"><a class="wp-block-button__link wp-element-button" href="#contact">Get in Touch</a></div>
+<!-- wp:button {"className":"pfbtn pfbtn--ghost"} -->
+<div class="wp-block-button pfbtn pfbtn--ghost"><a class="wp-block-button__link wp-element-button" href="#contact">Get in Touch</a></div>
 <!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->

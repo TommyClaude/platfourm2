@@ -90,8 +90,8 @@ $platfourm_img_attrs = function ( $id, $cls ) {
 <!-- /wp:group -->
 <!-- wp:buttons {"className":"about__founder-btns"} -->
 <div class="wp-block-buttons about__founder-btns">
-<!-- wp:button {"className":"btn about__founder-btn"} -->
-<div class="wp-block-button btn about__founder-btn"><a class="wp-block-button__link wp-element-button" href="tel:0407033938">Talk to Sam</a></div>
+<!-- wp:button {"className":"pfbtn about__founder-btn"} -->
+<div class="wp-block-button pfbtn about__founder-btn"><a class="wp-block-button__link wp-element-button" href="tel:0407033938">Talk to Sam</a></div>
 <!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->

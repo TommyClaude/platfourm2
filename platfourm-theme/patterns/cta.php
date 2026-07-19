@@ -24,11 +24,11 @@
 
 <!-- wp:buttons {"className":"cta__actions"} -->
 <div class="wp-block-buttons cta__actions">
-<!-- wp:button {"className":"btn btn--white"} -->
-<div class="wp-block-button btn btn--white"><a class="wp-block-button__link wp-element-button" href="tel:0407033938">0407 033 938</a></div>
+<!-- wp:button {"className":"pfbtn pfbtn--white"} -->
+<div class="wp-block-button pfbtn pfbtn--white"><a class="wp-block-button__link wp-element-button" href="tel:0407033938">0407 033 938</a></div>
 <!-- /wp:button -->
-<!-- wp:button {"className":"btn btn--ghost"} -->
-<div class="wp-block-button btn btn--ghost"><a class="wp-block-button__link wp-element-button" href="mailto:info@platfourm.com">info@platfourm.com</a></div>
+<!-- wp:button {"className":"pfbtn pfbtn--ghost"} -->
+<div class="wp-block-button pfbtn pfbtn--ghost"><a class="wp-block-button__link wp-element-button" href="mailto:info@platfourm.com">info@platfourm.com</a></div>
 <!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->

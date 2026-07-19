@@ -1664,11 +1664,13 @@ body.home main { padding-top: 0; }
    Site Editor and the front end match while everything stays editable.
    -------------------------------------------------------------------------- */
 
-/* Core Buttons block → the theme's .btn look */
+/* Core Buttons block → the theme's button look. These use the namespaced
+   .pfbtn classes (NOT .btn) so the wrapper never picks up the original .btn
+   box/arrow styles — only the inner <a> is styled. */
 .wp-block-buttons { gap: 28px; align-items: center; margin: 0; }
 .wp-block-buttons.hero__actions { margin-top: 44px; }
-.wp-block-button { margin: 0; }
-.wp-block-button__link {
+.wp-block-button.pfbtn { margin: 0; }
+.pfbtn .wp-block-button__link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1686,7 +1688,7 @@ body.home main { padding-top: 0; }
   z-index: 0;
   transition: color 0.35s ease, border-color 0.35s ease;
 }
-.wp-block-button__link::before {
+.pfbtn .wp-block-button__link::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1696,57 +1698,70 @@ body.home main { padding-top: 0; }
   transform-origin: left;
   transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.wp-block-button__link:hover::before { transform: scaleX(1); }
-.wp-block-button__link:hover { color: var(--white); }
+.pfbtn .wp-block-button__link:hover::before { transform: scaleX(1); }
+.pfbtn .wp-block-button__link:hover { color: var(--white); }
 
-.wp-block-button.btn--primary .wp-block-button__link,
-.wp-block-button.btn--white .wp-block-button__link {
+.pfbtn--primary .wp-block-button__link,
+.pfbtn--white .wp-block-button__link {
   border-color: rgba(255, 255, 255, 0.85);
   color: var(--white);
   --btn-fill: var(--white);
 }
-.wp-block-button.btn--primary .wp-block-button__link:hover,
-.wp-block-button.btn--white .wp-block-button__link:hover {
+.pfbtn--primary .wp-block-button__link:hover,
+.pfbtn--white .wp-block-button__link:hover {
   color: var(--ink);
   border-color: var(--white);
 }
 
-/* ghost variant — underlined text with a trailing arrow, no box */
-.wp-block-button.btn--ghost .wp-block-button__link {
-  padding: 0 0 6px;
+/* ghost variant — underlined text with a single trailing arrow, no box */
+.pfbtn--ghost .wp-block-button__link {
+  display: inline;
+  padding: 0;
   border: 0;
   overflow: visible;
   background: none;
+  text-decoration: underline;
+  text-underline-offset: 7px;
+  text-decoration-thickness: 1px;
 }
-.wp-block-button.btn--ghost .wp-block-button__link::before {
-  top: auto;
-  bottom: 0;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(1);
-}
-.wp-block-button.btn--ghost .wp-block-button__link::after {
-  content: "\2192";
-  margin-left: 4px;
+.pfbtn--ghost .wp-block-button__link::before { display: none; }
+.pfbtn--ghost .wp-block-button__link::after {
+  content: "\00a0\00a0\2192";
+  display: inline-block;
+  text-decoration: none;
   font-family: var(--font-head);
   font-size: 14px;
-  line-height: 1;
   transition: transform 0.3s ease;
 }
-.wp-block-button.btn--ghost .wp-block-button__link:hover {
-  color: inherit;
-}
-.wp-block-button.btn--ghost .wp-block-button__link:hover::after { transform: translateX(6px); }
-.hero .wp-block-button.btn--ghost .wp-block-button__link { color: var(--white); }
+.pfbtn--ghost .wp-block-button__link:hover { color: inherit; }
+.pfbtn--ghost .wp-block-button__link:hover::after { transform: translateX(6px); }
+.hero .pfbtn--ghost .wp-block-button__link { color: var(--white); }
 
 /* the CTA sits on a light background, so its buttons are dark ink */
-.cta .wp-block-button.btn--white .wp-block-button__link {
+.cta .pfbtn--white .wp-block-button__link {
   border-color: var(--ink);
   color: var(--ink);
   --btn-fill: var(--ink);
 }
-.cta .wp-block-button.btn--white .wp-block-button__link:hover { color: var(--white); border-color: var(--ink); }
-.cta .wp-block-button.btn--ghost .wp-block-button__link { color: var(--ink); }
+.cta .pfbtn--white .wp-block-button__link:hover { color: var(--white); border-color: var(--ink); }
+.cta .pfbtn--ghost .wp-block-button__link { color: var(--ink); }
+
+/* footer email/phone are native paragraph links — restore the hover underline */
+.footer__contact .footer__line-link { margin: 0 0 20px; }
+.footer__line-link a { position: relative; color: inherit; display: inline-block; }
+.footer__line-link a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s ease;
+}
+.footer__line-link a:hover::after { transform: scaleX(1); }
 
 /* about badge + founder row rebuilt as native blocks */
 .about__badge-value,

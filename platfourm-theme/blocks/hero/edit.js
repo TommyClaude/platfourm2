@@ -21,8 +21,8 @@
 		[ 'core/heading', { level: 1, className: 'hero__title', content: 'From Concept<br>to Completion' } ],
 		[ 'core/paragraph', { className: 'hero__text', content: 'Platfourm delivers new builds, renovations and commercial fit-outs for both private and public sectors — building open, collaborative relationships that go above and beyond.' } ],
 		[ 'core/buttons', { className: 'hero__actions' }, [
-			[ 'core/button', { className: 'btn btn--primary', text: 'View Our Projects', url: '#projects' } ],
-			[ 'core/button', { className: 'btn btn--ghost', text: 'Get in Touch', url: '#contact' } ]
+			[ 'core/button', { className: 'pfbtn pfbtn--primary', text: 'View Our Projects', url: '#projects' } ],
+			[ 'core/button', { className: 'pfbtn pfbtn--ghost', text: 'Get in Touch', url: '#contact' } ]
 		] ]
 	];
 
