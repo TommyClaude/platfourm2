@@ -1,0 +1,16 @@
+/*
+Theme Name: Platfourm
+Theme URI: https://tommyclaude.github.io/platfourm2/v3/
+Author: Platfourm
+Description: Minimal block theme for Platfourm — Australian building & construction company. Full Site Editing: the whole home page ships as editable Gutenberg blocks and every section is registered as a block pattern.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: platfourm
+Tags: block-patterns, full-site-editing, one-column
+*/
+
+/* All real styles live in assets/css/style.css (enqueued by functions.php). */

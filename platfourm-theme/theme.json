@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/wp/6.5/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "1700px",
+      "wideSize": "1700px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        { "slug": "ink", "color": "#141414", "name": "Ink" },
+        { "slug": "body", "color": "#595959", "name": "Body" },
+        { "slug": "faint", "color": "#8f8c86", "name": "Faint" },
+        { "slug": "line", "color": "#e6e3dd", "name": "Hairline" },
+        { "slug": "soft", "color": "#f7f5f2", "name": "Soft" },
+        { "slug": "dark", "color": "#151515", "name": "Dark" },
+        { "slug": "white", "color": "#ffffff", "name": "White" },
+        { "slug": "blue", "color": "#02a3da", "name": "Platfourm Blue" }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "slug": "inter",
+          "name": "Inter",
+          "fontFamily": "\"Inter\", system-ui, sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Inter",
+              "fontStyle": "normal",
+              "fontWeight": "100 900",
+              "src": [ "file:./assets/fonts/inter-latin.woff2" ]
+            }
+          ]
+        },
+        {
+          "slug": "jost",
+          "name": "Jost",
+          "fontFamily": "\"Jost\", \"Century Gothic\", sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Jost",
+              "fontStyle": "normal",
+              "fontWeight": "100 900",
+              "src": [ "file:./assets/fonts/jost-latin.woff2" ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#595959"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--inter)",
+      "fontSize": "15px",
+      "lineHeight": "1.8"
+    }
+  }
+}
