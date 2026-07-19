@@ -3,8 +3,25 @@
  * Title: About — who we are
  * Slug: platfourm/about
  * Categories: platfourm
- * Viewport Width: 1400
+ * Inserter: no
+ *
+ * The two photos are core Image blocks sourced from the Media Library, so they
+ * can be swapped in the Site Editor.
  */
+
+$platfourm_about_1    = platfourm_image_id( 'about-1' );
+$platfourm_about_1_u  = platfourm_image_url( 'about-1', 'assets/img/who-we-are-1.jpg' );
+$platfourm_about_2    = platfourm_image_id( 'about-2' );
+$platfourm_about_2_u  = platfourm_image_url( 'about-2', 'assets/img/who-we-are-2.jpg' );
+$platfourm_founder_u  = platfourm_image_url( 'founder', 'assets/img/sam-avatar.webp' );
+
+$platfourm_img_attrs = function ( $id, $cls ) {
+	$attrs = array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => $cls );
+	if ( $id ) {
+		$attrs['id'] = $id;
+	}
+	return wp_json_encode( $attrs );
+};
 ?>
 <!-- wp:group {"tagName":"section","anchor":"about","className":"section about"} -->
 <section class="wp-block-group section about" id="about">
@@ -13,11 +30,11 @@
 
 <!-- wp:group {"className":"about__media reveal"} -->
 <div class="wp-block-group about__media reveal">
-<!-- wp:image {"className":"about__photo about__photo--main"} -->
-<figure class="wp-block-image about__photo about__photo--main"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/who-we-are-1.jpg' ) ); ?>" alt="Platfourm joinery team member installing custom shelving"/></figure>
+<!-- wp:image <?php echo $platfourm_img_attrs( $platfourm_about_1, 'about__photo about__photo--main' ); ?> -->
+<figure class="wp-block-image size-large about__photo about__photo--main"><img src="<?php echo esc_url( $platfourm_about_1_u ); ?>" alt="Platfourm joinery team member installing custom shelving"<?php echo $platfourm_about_1 ? ' class="wp-image-' . (int) $platfourm_about_1 . '"' : ''; ?>/></figure>
 <!-- /wp:image -->
-<!-- wp:image {"className":"about__photo about__photo--overlap"} -->
-<figure class="wp-block-image about__photo about__photo--overlap"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/who-we-are-2.jpg' ) ); ?>" alt="Finished heritage theatre corridor with timber panelling"/></figure>
+<!-- wp:image <?php echo $platfourm_img_attrs( $platfourm_about_2, 'about__photo about__photo--overlap' ); ?> -->
+<figure class="wp-block-image size-large about__photo about__photo--overlap"><img src="<?php echo esc_url( $platfourm_about_2_u ); ?>" alt="Finished heritage theatre corridor with timber panelling"<?php echo $platfourm_about_2 ? ' class="wp-image-' . (int) $platfourm_about_2 . '"' : ''; ?>/></figure>
 <!-- /wp:image -->
 <!-- wp:html -->
 <div class="about__badge">
@@ -54,7 +71,7 @@
 <!-- /wp:list -->
 <!-- wp:html -->
 <div class="about__founder reveal">
-  <img class="about__founder-avatar" src="<?php echo esc_url( get_theme_file_uri( 'assets/img/sam-avatar.webp' ) ); ?>" width="300" height="300" alt="">
+  <img class="about__founder-avatar" src="<?php echo esc_url( $platfourm_founder_u ); ?>" width="300" height="300" alt="">
   <div>
     <strong>Samuel Wilton</strong>
     <span>Founder &amp; Managing Director</span>

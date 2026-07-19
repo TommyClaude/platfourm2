@@ -129,58 +129,11 @@
     });
   });
 
-  /* ---------- Project detail modal ---------- */
-  var PROJECTS = {
-    'genesian-theatre': {
-      title: 'Genesian Theatre',
-      location: 'Sydney, NSW',
-      tag: 'Commercial Fit-out',
-      desc: 'A heritage theatre transformation in the heart of Sydney. Platfourm delivered bespoke timber joinery throughout — the grand staircase, bar and foyer — pairing rich timber panelling and brass detailing with a modern teal palette, all while meeting the compliance demands of a working performance venue.',
-      images: 10,
-    },
-    'new-build-duplex': {
-      title: 'New Build Duplex',
-      location: 'Mudgee, NSW',
-      tag: 'Residential · New Build',
-      desc: 'Platfourm was entrusted with the management of this project, handling every stage — from the concept phase and design approval through construction and subdivision to its completion — delivering a pair of crisp, contemporary homes in regional NSW.',
-      images: 6,
-    },
-    'full-home-renovation': {
-      title: 'Full Home Renovation',
-      location: 'Central Coast, NSW',
-      tag: 'Residential · Renovation',
-      desc: 'A full remodel of every internal space — bathroom, kitchen and bedrooms — together with an additional carport. Platfourm took a tired weatherboard cottage back to frame and rebuilt it into a bright, modern family home.',
-      images: 4,
-    },
-    'sydney-airport-terminal': {
-      title: 'Sydney Airport Terminal',
-      location: 'Mascot, NSW',
-      tag: 'Commercial · Airport',
-      desc: 'A charger upgrade rolled out across the T2 food court at Sydney Airport. Platfourm retrofitted power and USB charging into the communal timber benches and delivered the works live, in a high-traffic terminal, with minimal disruption to travellers and retailers.',
-      images: 4,
-    },
-    'redland-grammar-school': {
-      title: 'Redland Grammar School',
-      location: 'Cremorne, NSW',
-      tag: 'Education',
-      desc: 'Classroom and corridor upgrades at the Cremorne campus — acoustic wall panelling, joinery, storage and new floor finishes. The works were programmed around the school calendar to keep learning spaces available throughout.',
-      images: 4,
-    },
-    'kindalin-childcare': {
-      title: 'Kindalin Childcare',
-      location: 'Rouse Hill, NSW',
-      tag: 'Education · Joinery',
-      desc: 'A custom joinery fit-out for a new childcare centre in Rouse Hill. Curved timber batten screens, plywood cabinetry and bespoke kitchen and storage were crafted for a bright, tactile and hard-wearing learning environment.',
-      images: 6,
-    },
-    'elanora-aged-care': {
-      title: 'Elanora Aged Care',
-      location: 'Elanora, NSW',
-      tag: 'Aged Care',
-      desc: 'A common-area refurbishment for an aged-care facility — banquette seating, custom shelving and warm, accessible finishes designed for resident comfort, easy movement and everyday use.',
-      images: 1,
-    },
-  };
+  /* ---------- Project detail modal ----------
+     Project data (title, location, tag, description, gallery image URLs)
+     is provided by the theme from the Project posts via
+     window.PLATFOURM_PROJECTS, keyed by project slug. */
+  var PROJECTS = window.PLATFOURM_PROJECTS || {};
 
   var modal = document.getElementById('projectModal');
 
@@ -203,15 +156,15 @@
       modalLocation.textContent = p.location;
       modalDesc.textContent = p.desc;
 
-      var assetBase = window.PLATFOURM_ASSETS || 'assets';
+      var images = p.images || [];
       var html = '';
-      for (var i = 1; i <= p.images; i++) {
+      for (var i = 0; i < images.length; i++) {
         html +=
-          '<img src="' + assetBase + '/img/projects/' + slug + '-' + i + '.jpg" alt="' +
-          p.title + ' — image ' + i + '" loading="lazy">';
+          '<img src="' + images[i] + '" alt="' +
+          p.title + ' — image ' + (i + 1) + '" loading="lazy">';
       }
       modalGallery.innerHTML = html;
-      modalGallery.classList.toggle('modal__gallery--single', p.images < 2);
+      modalGallery.classList.toggle('modal__gallery--single', images.length < 2);
 
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');

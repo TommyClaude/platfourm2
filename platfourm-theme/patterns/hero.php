@@ -3,18 +3,47 @@
  * Title: Hero — slideshow intro
  * Slug: platfourm/hero
  * Categories: platfourm
- * Viewport Width: 1400
+ * Inserter: no
+ *
+ * The three slides are core Image blocks, so each background can be swapped
+ * from the Media Library directly in the Site Editor. main.js cross-fades them
+ * by toggling `is-active`.
  */
+
+$platfourm_slides = array(
+	array( 'hero-1', 'assets/img/projects/genesian-theatre-1.jpg' ),
+	array( 'hero-2', 'assets/img/projects/genesian-theatre-2.jpg' ),
+	array( 'hero-3', 'assets/img/projects/genesian-theatre-9.jpg' ),
+);
 ?>
 <!-- wp:group {"tagName":"section","anchor":"home","className":"hero"} -->
 <section class="wp-block-group hero" id="home">
 
-<!-- wp:html -->
-<div class="hero__slides" aria-hidden="true">
-  <div class="hero__slide is-active" style="background-image:url('<?php echo esc_url( get_theme_file_uri( 'assets/img/projects/genesian-theatre-1.jpg' ) ); ?>')"></div>
-  <div class="hero__slide" style="background-image:url('<?php echo esc_url( get_theme_file_uri( 'assets/img/projects/genesian-theatre-2.jpg' ) ); ?>')"></div>
-  <div class="hero__slide" style="background-image:url('<?php echo esc_url( get_theme_file_uri( 'assets/img/projects/genesian-theatre-9.jpg' ) ); ?>')"></div>
+<!-- wp:group {"className":"hero__slides"} -->
+<div class="wp-block-group hero__slides">
+<?php
+foreach ( $platfourm_slides as $platfourm_i => $platfourm_slide ) :
+	$platfourm_id  = platfourm_image_id( $platfourm_slide[0] );
+	$platfourm_url = platfourm_image_url( $platfourm_slide[0], $platfourm_slide[1] );
+	$platfourm_cls = 'hero__slide' . ( 0 === $platfourm_i ? ' is-active' : '' );
+
+	$platfourm_attrs = array(
+		'sizeSlug'        => 'full',
+		'linkDestination' => 'none',
+		'className'       => $platfourm_cls,
+	);
+	if ( $platfourm_id ) {
+		$platfourm_attrs['id'] = $platfourm_id;
+	}
+	?>
+<!-- wp:image <?php echo wp_json_encode( $platfourm_attrs ); ?> -->
+<figure class="wp-block-image size-full <?php echo esc_attr( $platfourm_cls ); ?>"><img src="<?php echo esc_url( $platfourm_url ); ?>" alt=""<?php echo $platfourm_id ? ' class="wp-image-' . (int) $platfourm_id . '"' : ''; ?>/></figure>
+<!-- /wp:image -->
+<?php endforeach; ?>
 </div>
+<!-- /wp:group -->
+
+<!-- wp:html -->
 <div class="hero__overlay"></div>
 <!-- /wp:html -->
 

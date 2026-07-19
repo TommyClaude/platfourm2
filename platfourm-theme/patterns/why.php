@@ -77,8 +77,16 @@
 </div>
 <!-- /wp:group -->
 
-<!-- wp:image {"className":"why__media reveal"} -->
-<figure class="wp-block-image why__media reveal"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/img/genesian-bar.jpg' ) ); ?>" alt="Genesian Theatre bar — timber joinery with marble benchtop"/></figure>
+<?php
+$platfourm_why_id  = platfourm_image_id( 'why-1' );
+$platfourm_why_url = platfourm_image_url( 'why-1', 'assets/img/genesian-bar.jpg' );
+$platfourm_why_att = array( 'sizeSlug' => 'large', 'linkDestination' => 'none', 'className' => 'why__media reveal' );
+if ( $platfourm_why_id ) {
+	$platfourm_why_att['id'] = $platfourm_why_id;
+}
+?>
+<!-- wp:image <?php echo wp_json_encode( $platfourm_why_att ); ?> -->
+<figure class="wp-block-image size-large why__media reveal"><img src="<?php echo esc_url( $platfourm_why_url ); ?>" alt="Genesian Theatre bar — timber joinery with marble benchtop"<?php echo $platfourm_why_id ? ' class="wp-image-' . (int) $platfourm_why_id . '"' : ''; ?>/></figure>
 <!-- /wp:image -->
 
 </div>

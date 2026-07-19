@@ -1623,6 +1623,18 @@ body.modal-open { overflow: hidden; }
 /* core image blocks inside our components carry no extra spacing */
 .wp-block-image { margin: 0; }
 
+/* hero slides are now core Image blocks (editable from the Media Library);
+   make each <img> fill its absolutely-positioned slide like the old
+   background-image did */
+.hero__slide { display: block; }
+.hero__slides .hero__slide img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  display: block;
+}
+
 /* spans that became paragraphs in block markup — keep them tight */
 .stats__item p,
 p.why__num,
