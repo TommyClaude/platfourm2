@@ -36,12 +36,16 @@ $platfourm_img_attrs = function ( $id, $cls ) {
 <!-- wp:image <?php echo $platfourm_img_attrs( $platfourm_about_2, 'about__photo about__photo--overlap' ); ?> -->
 <figure class="wp-block-image size-large about__photo about__photo--overlap"><img src="<?php echo esc_url( $platfourm_about_2_u ); ?>" alt="Finished heritage theatre corridor with timber panelling"<?php echo $platfourm_about_2 ? ' class="wp-image-' . (int) $platfourm_about_2 . '"' : ''; ?>/></figure>
 <!-- /wp:image -->
-<!-- wp:html -->
-<div class="about__badge">
-  <span class="about__badge-value">Est.</span>
-  <span class="about__badge-year">2016</span>
+<!-- wp:group {"className":"about__badge"} -->
+<div class="wp-block-group about__badge">
+<!-- wp:paragraph {"className":"about__badge-value"} -->
+<p class="about__badge-value">Est.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"about__badge-year"} -->
+<p class="about__badge-year">2016</p>
+<!-- /wp:paragraph -->
 </div>
-<!-- /wp:html -->
+<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 
@@ -69,16 +73,30 @@ $platfourm_img_attrs = function ( $id, $cls ) {
 <!-- wp:list-item --><li>Residential new builds</li><!-- /wp:list-item -->
 </ul>
 <!-- /wp:list -->
-<!-- wp:html -->
-<div class="about__founder reveal">
-  <img class="about__founder-avatar" src="<?php echo esc_url( $platfourm_founder_u ); ?>" width="300" height="300" alt="">
-  <div>
-    <strong>Samuel Wilton</strong>
-    <span>Founder &amp; Managing Director</span>
-  </div>
-  <a href="tel:0407033938" class="btn btn--outline about__founder-btn">Talk to Sam</a>
+<!-- wp:group {"className":"about__founder"} -->
+<div class="wp-block-group about__founder">
+<!-- wp:image <?php echo $platfourm_img_attrs( platfourm_image_id( 'founder' ), 'about__founder-avatar' ); ?> -->
+<figure class="wp-block-image size-large about__founder-avatar"><img src="<?php echo esc_url( $platfourm_founder_u ); ?>" alt="Samuel Wilton"<?php echo platfourm_image_id( 'founder' ) ? ' class="wp-image-' . (int) platfourm_image_id( 'founder' ) . '"' : ''; ?>/></figure>
+<!-- /wp:image -->
+<!-- wp:group {"className":"about__founder-detail"} -->
+<div class="wp-block-group about__founder-detail">
+<!-- wp:paragraph {"className":"about__founder-name"} -->
+<p class="about__founder-name">Samuel Wilton</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"about__founder-role"} -->
+<p class="about__founder-role">Founder &amp; Managing Director</p>
+<!-- /wp:paragraph -->
 </div>
-<!-- /wp:html -->
+<!-- /wp:group -->
+<!-- wp:buttons {"className":"about__founder-btns"} -->
+<div class="wp-block-buttons about__founder-btns">
+<!-- wp:button {"className":"btn about__founder-btn"} -->
+<div class="wp-block-button btn about__founder-btn"><a class="wp-block-button__link wp-element-button" href="tel:0407033938">Talk to Sam</a></div>
+<!-- /wp:button -->
+</div>
+<!-- /wp:buttons -->
+</div>
+<!-- /wp:group -->
 </div>
 <!-- /wp:group -->
 

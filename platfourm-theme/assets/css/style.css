@@ -1658,3 +1658,132 @@ body.home main { padding-top: 0; }
   opacity: 1 !important;
   transform: none !important;
 }
+
+/* --------------------------------------------------------------------------
+   Core block bridges — let native blocks adopt the theme's design so the
+   Site Editor and the front end match while everything stays editable.
+   -------------------------------------------------------------------------- */
+
+/* Core Buttons block → the theme's .btn look */
+.wp-block-buttons { gap: 28px; align-items: center; margin: 0; }
+.wp-block-buttons.hero__actions { margin-top: 44px; }
+.wp-block-button { margin: 0; }
+.wp-block-button__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 19px 40px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font: var(--label);
+  letter-spacing: var(--track);
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+.wp-block-button__link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--btn-fill, var(--ink));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.wp-block-button__link:hover::before { transform: scaleX(1); }
+.wp-block-button__link:hover { color: var(--white); }
+
+.wp-block-button.btn--primary .wp-block-button__link,
+.wp-block-button.btn--white .wp-block-button__link {
+  border-color: rgba(255, 255, 255, 0.85);
+  color: var(--white);
+  --btn-fill: var(--white);
+}
+.wp-block-button.btn--primary .wp-block-button__link:hover,
+.wp-block-button.btn--white .wp-block-button__link:hover {
+  color: var(--ink);
+  border-color: var(--white);
+}
+
+/* ghost variant — underlined text with a trailing arrow, no box */
+.wp-block-button.btn--ghost .wp-block-button__link {
+  padding: 0 0 6px;
+  border: 0;
+  overflow: visible;
+  background: none;
+}
+.wp-block-button.btn--ghost .wp-block-button__link::before {
+  top: auto;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+}
+.wp-block-button.btn--ghost .wp-block-button__link::after {
+  content: "\2192";
+  margin-left: 4px;
+  font-family: var(--font-head);
+  font-size: 14px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+.wp-block-button.btn--ghost .wp-block-button__link:hover {
+  color: inherit;
+}
+.wp-block-button.btn--ghost .wp-block-button__link:hover::after { transform: translateX(6px); }
+.hero .wp-block-button.btn--ghost .wp-block-button__link { color: var(--white); }
+
+/* the CTA sits on a light background, so its buttons are dark ink */
+.cta .wp-block-button.btn--white .wp-block-button__link {
+  border-color: var(--ink);
+  color: var(--ink);
+  --btn-fill: var(--ink);
+}
+.cta .wp-block-button.btn--white .wp-block-button__link:hover { color: var(--white); border-color: var(--ink); }
+.cta .wp-block-button.btn--ghost .wp-block-button__link { color: var(--ink); }
+
+/* about badge + founder row rebuilt as native blocks */
+.about__badge-value,
+.about__badge-year { margin: 0; }
+.about__founder-detail { display: flex; flex-direction: column; gap: 2px; }
+.about__founder-name {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.about__founder-role {
+  margin: 0;
+  font: var(--label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.about__founder-avatar { width: 56px; flex-shrink: 0; }
+.about__founder-avatar img { width: 56px; height: 56px; object-fit: cover; }
+.about__founder-btns { margin: 0; }
+/* the founder "Talk to Sam" button is the compact outline style */
+.about__founder-btns .wp-block-button__link { padding: 14px 26px; }
+
+/* Core Social Icons block in the footer bottom bar */
+.footer__social.wp-block-social-links { gap: 0 22px; margin: 0; }
+.footer__social.wp-block-social-links .wp-social-link {
+  background: none;
+  color: var(--ink);
+  padding: 0;
+  opacity: 0.75;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.footer__social.wp-block-social-links .wp-social-link:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+.footer__social.wp-block-social-links .wp-social-link svg { width: 15px; height: 15px; fill: currentColor; }

@@ -5,83 +5,43 @@
  * Categories: platfourm
  * Inserter: no
  *
- * The three slides are core Image blocks, so each background can be swapped
- * from the Media Library directly in the Site Editor. main.js cross-fades them
- * by toggling `is-active`.
+ * Uses the platfourm/hero block: a 3-image cross-fade slideshow (each slide
+ * editable from the Media Library in the Site Editor) wrapping editable
+ * heading/text/button blocks.
  */
 
-$platfourm_slides = array(
-	array( 'hero-1', 'assets/img/projects/genesian-theatre-1.jpg' ),
-	array( 'hero-2', 'assets/img/projects/genesian-theatre-2.jpg' ),
-	array( 'hero-3', 'assets/img/projects/genesian-theatre-9.jpg' ),
-);
-?>
-<!-- wp:group {"tagName":"section","anchor":"home","className":"hero"} -->
-<section class="wp-block-group hero" id="home">
-
-<!-- wp:group {"className":"hero__slides"} -->
-<div class="wp-block-group hero__slides">
-<?php
-foreach ( $platfourm_slides as $platfourm_i => $platfourm_slide ) :
-	$platfourm_id  = platfourm_image_id( $platfourm_slide[0] );
-	$platfourm_url = platfourm_image_url( $platfourm_slide[0], $platfourm_slide[1] );
-	$platfourm_cls = 'hero__slide' . ( 0 === $platfourm_i ? ' is-active' : '' );
-
-	$platfourm_attrs = array(
-		'sizeSlug'        => 'full',
-		'linkDestination' => 'none',
-		'className'       => $platfourm_cls,
-	);
+$platfourm_hero_attrs = array();
+foreach ( array( 'image1' => 'hero-1', 'image2' => 'hero-2', 'image3' => 'hero-3' ) as $platfourm_attr => $platfourm_key ) {
+	$platfourm_id = platfourm_image_id( $platfourm_key );
 	if ( $platfourm_id ) {
-		$platfourm_attrs['id'] = $platfourm_id;
+		$platfourm_hero_attrs[ $platfourm_attr ] = array(
+			'id'  => $platfourm_id,
+			'url' => wp_get_attachment_url( $platfourm_id ),
+		);
 	}
-	?>
-<!-- wp:image <?php echo wp_json_encode( $platfourm_attrs ); ?> -->
-<figure class="wp-block-image size-full <?php echo esc_attr( $platfourm_cls ); ?>"><img src="<?php echo esc_url( $platfourm_url ); ?>" alt=""<?php echo $platfourm_id ? ' class="wp-image-' . (int) $platfourm_id . '"' : ''; ?>/></figure>
-<!-- /wp:image -->
-<?php endforeach; ?>
-</div>
-<!-- /wp:group -->
-
-<!-- wp:html -->
-<div class="hero__overlay"></div>
-<!-- /wp:html -->
-
-<!-- wp:group {"className":"container hero__content"} -->
-<div class="wp-block-group container hero__content">
-
-<!-- wp:paragraph {"className":"hero__eyebrow reveal"} -->
-<p class="hero__eyebrow reveal">Australian Building &amp; Construction</p>
+}
+?>
+<!-- wp:platfourm/hero <?php echo wp_json_encode( $platfourm_hero_attrs ); ?> -->
+<!-- wp:paragraph {"className":"hero__eyebrow"} -->
+<p class="hero__eyebrow">Australian Building &amp; Construction</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":1,"className":"hero__title reveal"} -->
-<h1 class="wp-block-heading hero__title reveal">From Concept<br>to Completion</h1>
+<!-- wp:heading {"level":1,"className":"hero__title"} -->
+<h1 class="wp-block-heading hero__title">From Concept<br>to Completion</h1>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"className":"hero__text reveal"} -->
-<p class="hero__text reveal">Platfourm delivers new builds, renovations and commercial fit-outs for both private and public sectors — building open, collaborative relationships that go above and beyond.</p>
+<!-- wp:paragraph {"className":"hero__text"} -->
+<p class="hero__text">Platfourm delivers new builds, renovations and commercial fit-outs for both private and public sectors — building open, collaborative relationships that go above and beyond.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:html -->
-<div class="hero__actions reveal">
-  <a href="#projects" class="btn btn--primary">View Our Projects</a>
-  <a href="#contact" class="btn btn--ghost"><span class="u-line">Get in Touch</span></a>
+<!-- wp:buttons {"className":"hero__actions"} -->
+<div class="wp-block-buttons hero__actions">
+<!-- wp:button {"className":"btn btn--primary"} -->
+<div class="wp-block-button btn btn--primary"><a class="wp-block-button__link wp-element-button" href="#projects">View Our Projects</a></div>
+<!-- /wp:button -->
+<!-- wp:button {"className":"btn btn--ghost"} -->
+<div class="wp-block-button btn btn--ghost"><a class="wp-block-button__link wp-element-button" href="#contact">Get in Touch</a></div>
+<!-- /wp:button -->
 </div>
-<div class="hero__caption" id="heroCaption" aria-live="polite">
-  <span class="hero__caption-tag">Featured</span>
-  <span class="hero__caption-text">Genesian Theatre — Grand Staircase</span>
-</div>
-<!-- /wp:html -->
-
-</div>
-<!-- /wp:group -->
-
-<!-- wp:html -->
-<div class="hero__dots" id="heroDots" role="tablist" aria-label="Hero slides"></div>
-<a href="#about" class="hero__scroll" aria-label="Scroll down">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-</a>
-<!-- /wp:html -->
-
-</section>
-<!-- /wp:group -->
+<!-- /wp:buttons -->
+<!-- /wp:platfourm/hero -->

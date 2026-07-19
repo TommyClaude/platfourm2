@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "platfourm/hero",
+  "title": "Platfourm Hero",
+  "category": "platfourm",
+  "icon": "cover-image",
+  "description": "Full-screen hero with a 3-image cross-fade slideshow and editable content.",
+  "keywords": [ "hero", "slideshow", "banner" ],
+  "supports": {
+    "html": false,
+    "reusable": false,
+    "multiple": false
+  },
+  "attributes": {
+    "image1": { "type": "object", "default": {} },
+    "image2": { "type": "object", "default": {} },
+    "image3": { "type": "object", "default": {} }
+  },
+  "textdomain": "platfourm",
+  "editorScript": "platfourm-hero-edit",
+  "render": "file:./render.php"
+}

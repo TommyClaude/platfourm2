@@ -135,6 +135,7 @@ function platfourm_run_setup() {
 		'about-2' => 'assets/img/who-we-are-2.jpg',
 		'why-1'   => 'assets/img/genesian-bar.jpg',
 		'founder' => 'assets/img/sam-avatar.webp',
+		'footer-logo' => 'assets/img/platfourm-combination-vertical.png',
 	);
 	$section_ids = array();
 	foreach ( $section_sources as $key => $path ) {

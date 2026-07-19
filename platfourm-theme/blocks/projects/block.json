@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "platfourm/projects",
+  "title": "Platfourm Projects Grid",
+  "category": "platfourm",
+  "icon": "grid-view",
+  "description": "The Featured Projects grid, generated from the Project posts (edit them under Projects).",
+  "keywords": [ "projects", "portfolio", "grid" ],
+  "supports": {
+    "html": false,
+    "reusable": false,
+    "multiple": false
+  },
+  "textdomain": "platfourm",
+  "editorScript": "platfourm-projects-edit",
+  "render": "file:./render.php"
+}

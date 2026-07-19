@@ -98,6 +98,22 @@ function platfourm_pattern_category() {
 add_action( 'init', 'platfourm_pattern_category' );
 
 /**
+ * Register the theme's custom blocks (no build step — the editor scripts are
+ * plain JS that depend on the wp-* packages already shipped by WordPress).
+ */
+function platfourm_register_blocks() {
+	$version = wp_get_theme()->get( 'Version' );
+	$deps    = array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-i18n' );
+
+	wp_register_script( 'platfourm-hero-edit', get_theme_file_uri( 'blocks/hero/edit.js' ), $deps, $version, true );
+	wp_register_script( 'platfourm-projects-edit', get_theme_file_uri( 'blocks/projects/edit.js' ), array_merge( $deps, array( 'wp-server-side-render' ) ), $version, true );
+
+	register_block_type( get_theme_file_path( 'blocks/hero' ) );
+	register_block_type( get_theme_file_path( 'blocks/projects' ) );
+}
+add_action( 'init', 'platfourm_register_blocks' );
+
+/**
  * The project detail modal is site chrome (not editable content); it is
  * printed once per page and populated by assets/js/main.js.
  */
