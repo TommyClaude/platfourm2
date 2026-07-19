@@ -833,11 +833,12 @@ a.hovered .u-line::after {
 .project-card__media {
   position: relative;
   overflow: hidden;
+  aspect-ratio: 3 / 4;
 }
 
 .project-card img {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  height: 100%;
   object-fit: cover;
   transition: opacity 0.4s ease, transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
 }
