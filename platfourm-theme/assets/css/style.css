@@ -1713,29 +1713,52 @@ body.home main { padding-top: 0; }
   border-color: var(--white);
 }
 
-/* ghost variant — underlined text with a single trailing arrow, no box */
+/* ghost variant — text with an animated underline (retracts right, regrows
+   from the left on hover) and a trailing arrow, no box */
 .pfbtn--ghost .wp-block-button__link {
-  display: inline;
-  padding: 0;
+  display: inline-block;
+  padding: 0 30px 0 0;
   border: 0;
   overflow: visible;
   background: none;
-  text-decoration: underline;
-  text-underline-offset: 7px;
-  text-decoration-thickness: 1px;
 }
-.pfbtn--ghost .wp-block-button__link::before { display: none; }
+.pfbtn--ghost .wp-block-button__link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 30px;
+  top: auto;
+  bottom: -7px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+.pfbtn--ghost .wp-block-button__link:hover::before {
+  animation: pf-underline-refresh 0.6s ease;
+}
 .pfbtn--ghost .wp-block-button__link::after {
-  content: "\00a0\00a0\2192";
-  display: inline-block;
-  text-decoration: none;
+  content: "\2192";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   font-family: var(--font-head);
   font-size: 14px;
+  line-height: 1;
   transition: transform 0.3s ease;
 }
-.pfbtn--ghost .wp-block-button__link:hover { color: inherit; }
-.pfbtn--ghost .wp-block-button__link:hover::after { transform: translateX(6px); }
-.hero .pfbtn--ghost .wp-block-button__link { color: var(--white); }
+.pfbtn--ghost .wp-block-button__link:hover::after { transform: translateY(-50%) translateX(6px); }
+
+@keyframes pf-underline-refresh {
+  0%   { transform: scaleX(1); transform-origin: right center; }
+  45%  { transform: scaleX(0); transform-origin: right center; }
+  55%  { transform: scaleX(0); transform-origin: left center; }
+  100% { transform: scaleX(1); transform-origin: left center; }
+}
+
+.hero .pfbtn--ghost .wp-block-button__link,
+.hero .pfbtn--ghost .wp-block-button__link:hover { color: var(--white); }
 
 /* the CTA sits on a light background, so its buttons are dark ink */
 .cta .pfbtn--white .wp-block-button__link {
@@ -1789,6 +1812,10 @@ body.home main { padding-top: 0; }
 .about__founder-btns { margin: 0; }
 /* the founder "Talk to Sam" button is the compact outline style */
 .about__founder-btns .wp-block-button__link { padding: 14px 26px; }
+
+/* restore comfortable spacing between the about body paragraphs — the global
+   block-gap reset tightened multi-paragraph prose below the line height */
+.about__body > p { margin-bottom: 24px; }
 
 /* Core Social Icons block in the footer bottom bar */
 .footer__social.wp-block-social-links { gap: 0 22px; margin: 0; }
