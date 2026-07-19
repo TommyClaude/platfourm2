@@ -1713,31 +1713,16 @@ body.home main { padding-top: 0; }
   border-color: var(--white);
 }
 
-/* ghost variant — text with an animated underline (retracts right, regrows
-   from the left on hover) and a trailing arrow, no box */
-.pfbtn--ghost .wp-block-button__link {
-  display: inline-block;
-  padding: 0 30px 0 0;
-  border: 0;
-  overflow: visible;
-  background: none;
+/* ghost variant — the theme's signature dual-line underline (identical to the
+   .u-line effect on the header phone link: the resting line sweeps out to the
+   right while a new one grows in from the left) plus a trailing arrow. The
+   underline uses the link's two pseudo-elements, so the arrow lives on the
+   button wrapper to keep both pseudos free. */
+.wp-block-button.pfbtn--ghost {
+  position: relative;
+  padding-right: 28px;
 }
-.pfbtn--ghost .wp-block-button__link::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 30px;
-  top: auto;
-  bottom: -7px;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(1);
-  transform-origin: left center;
-}
-.pfbtn--ghost .wp-block-button__link:hover::before {
-  animation: pf-underline-refresh 0.6s ease;
-}
-.pfbtn--ghost .wp-block-button__link::after {
+.wp-block-button.pfbtn--ghost::after {
   content: "\2192";
   position: absolute;
   right: 0;
@@ -1748,17 +1733,32 @@ body.home main { padding-top: 0; }
   line-height: 1;
   transition: transform 0.3s ease;
 }
-.pfbtn--ghost .wp-block-button__link:hover::after { transform: translateY(-50%) translateX(6px); }
+.wp-block-button.pfbtn--ghost:hover::after { transform: translateY(-50%) translateX(6px); }
 
-@keyframes pf-underline-refresh {
-  0%   { transform: scaleX(1); transform-origin: right center; }
-  45%  { transform: scaleX(0); transform-origin: right center; }
-  55%  { transform: scaleX(0); transform-origin: left center; }
-  100% { transform: scaleX(1); transform-origin: left center; }
+.pfbtn--ghost .wp-block-button__link {
+  display: inline-block;
+  padding: 0 0 8px;
+  border: 0;
+  background: none;
+  overflow: visible;
 }
+.pfbtn--ghost .wp-block-button__link::before,
+.pfbtn--ghost .wp-block-button__link::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  background: currentColor;
+  transition: none;
+  will-change: transform;
+}
+.pfbtn--ghost .wp-block-button__link::before { transform: scaleX(1); transform-origin: left center; }
+.pfbtn--ghost .wp-block-button__link::after { transform: scaleX(0); transform-origin: right center; }
+.pfbtn--ghost:hover .wp-block-button__link::before { animation: underline-in-left 0.65s ease forwards; }
+.pfbtn--ghost:hover .wp-block-button__link::after { animation: underline-out-right 0.5s ease forwards; }
+.pfbtn--ghost .wp-block-button__link:hover { color: inherit; }
 
-.hero .pfbtn--ghost .wp-block-button__link,
-.hero .pfbtn--ghost .wp-block-button__link:hover { color: var(--white); }
+.hero .pfbtn--ghost { color: var(--white); }
 
 /* the CTA sits on a light background, so its buttons are dark ink */
 .cta .pfbtn--white .wp-block-button__link {
@@ -1767,7 +1767,7 @@ body.home main { padding-top: 0; }
   --btn-fill: var(--ink);
 }
 .cta .pfbtn--white .wp-block-button__link:hover { color: var(--white); border-color: var(--ink); }
-.cta .pfbtn--ghost .wp-block-button__link { color: var(--ink); }
+.cta .pfbtn--ghost { color: var(--ink); }
 
 /* footer email/phone are native paragraph links — restore the hover underline.
    The container already provides a flex gap, so the paragraphs carry no margin. */
