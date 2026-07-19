@@ -1608,6 +1608,18 @@ body.modal-open { overflow: hidden; }
    WordPress build adjustments
    ========================================================================== */
 
+/* WordPress injects a 24px margin-block-start between sibling blocks
+   ("block gap"). This theme controls every gap itself — section padding,
+   explicit grid `gap`, and the bottom margins on headings/paragraphs — so
+   neutralise those injected top margins to match the static build exactly.
+   (Fixes: white strip under the admin bar, gap below the hero, misaligned
+   project images, and the service-card hover offset.) */
+.wp-site-blocks > * + *,
+.is-layout-flow > * + *,
+.is-layout-constrained > * + * {
+  margin-block-start: 0;
+}
+
 /* core image blocks inside our components carry no extra spacing */
 .wp-block-image { margin: 0; }
 

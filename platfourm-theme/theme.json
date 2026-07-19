@@ -7,6 +7,9 @@
       "contentSize": "1700px",
       "wideSize": "1700px"
     },
+    "spacing": {
+      "blockGap": false
+    },
     "color": {
       "defaultPalette": false,
       "palette": [
