@@ -1758,7 +1758,12 @@ body.home main { padding-top: 0; }
 .pfbtn--ghost:hover .wp-block-button__link::after { animation: underline-out-right 0.5s ease forwards; }
 .pfbtn--ghost .wp-block-button__link:hover { color: inherit; }
 
-.hero .pfbtn--ghost { color: var(--white); }
+/* over the dark hero the ghost link text, underline and arrow are white
+   (the arrow lives on the wrapper, the text/underline on the link, so both
+   need the colour set explicitly — the link doesn't inherit the wrapper's) */
+.hero .pfbtn--ghost,
+.hero .pfbtn--ghost .wp-block-button__link,
+.hero .pfbtn--ghost .wp-block-button__link:hover { color: var(--white); }
 
 /* the CTA sits on a light background, so its buttons are dark ink */
 .cta .pfbtn--white .wp-block-button__link {
