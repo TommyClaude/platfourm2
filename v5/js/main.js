@@ -35,8 +35,22 @@
       if (typeof startHero === 'function') startHero();
     }
 
-    // failsafe: never leave hero content hidden
-    var failsafe = setTimeout(reveal, 4000);
+    // Dismiss the preloader overlay: adds .is-done (which lifts it off-screen
+    // and — via CSS — sets pointer-events:none immediately, not just once the
+    // lift transition finishes) then fully removes it from layout afterwards.
+    function dismiss() {
+      if (!pre) return;
+      pre.classList.add('is-done');
+      setTimeout(function () { pre.style.display = 'none'; }, 950);
+    }
+
+    // Failsafe: never leave hero content hidden, and — critically — never
+    // leave the preloader (a fixed, full-viewport, z-500 layer) covering and
+    // blocking the page if the rAF counter chain ever stalls for any reason.
+    var failsafe = setTimeout(function () {
+      dismiss();
+      reveal();
+    }, 4000);
 
     if (!pre || prefersReduced) {
       clearTimeout(failsafe);
@@ -61,10 +75,9 @@
         requestAnimationFrame(step);
       } else {
         setTimeout(function () {
-          pre.classList.add('is-done');
           clearTimeout(failsafe);
+          dismiss();
           reveal();
-          setTimeout(function () { if (pre) pre.style.display = 'none'; }, 950);
         }, 180);
       }
     }
@@ -328,41 +341,60 @@
   })();
 
   /* ======================================================================
-     Projects — floating preview follows cursor
+     Projects — docked preview frame (swaps on row hover/focus)
+     No element follows the cursor: the frame is sticky-docked in the CSS
+     two-column layout (>=1024px) and simply crossfades between two stacked
+     <img> layers when a different row is hovered/focused.
      ====================================================================== */
-  (function projectPreview() {
-    var preview = document.getElementById('projectPreview');
+  (function projectFrame() {
+    var frame = document.getElementById('projectPreview');
     var rows = Array.prototype.slice.call(document.querySelectorAll('.pindex__row[data-img]'));
-    if (!preview || !rows.length || !finePointer || prefersReduced) return;
+    if (!frame || !rows.length) return;
 
-    var mx = 0, my = 0, px = 0, py = 0, active = false, raf = null;
+    var imgs = Array.prototype.slice.call(frame.querySelectorAll('.pindex__frame-img'));
+    var nameEl = frame.querySelector('.pindex__frame-name');
+    var tagEl = frame.querySelector('.pindex__frame-tag');
+    if (!imgs.length) return;
+
+    var activeIdx = 0;
+    var currentSrc = imgs[0].getAttribute('src') || '';
+
+    function setCaption(row) {
+      var title = row.querySelector('.pindex__title');
+      var tag = row.querySelector('.pindex__tag');
+      if (nameEl && title) nameEl.textContent = title.textContent;
+      if (tagEl && tag) tagEl.textContent = tag.textContent;
+      rows.forEach(function (r) {
+        r.classList.toggle('pindex__row--current', r === row);
+      });
+    }
+
+    function show(row) {
+      var src = row.getAttribute('data-img');
+      if (!src) return;
+      if (src === currentSrc) {
+        setCaption(row);
+        return;
+      }
+      currentSrc = src;
+      var nextIdx = activeIdx === 0 ? 1 : 0;
+      var nextImg = imgs[nextIdx];
+      var prevImg = imgs[activeIdx];
+      if (!nextImg) return;
+      nextImg.src = src;
+      nextImg.classList.add('is-active');
+      if (prevImg) prevImg.classList.remove('is-active');
+      activeIdx = nextIdx;
+      setCaption(row);
+    }
 
     rows.forEach(function (row) {
-      row.addEventListener('mouseenter', function () {
-        preview.style.backgroundImage = 'url("' + row.getAttribute('data-img') + '")';
-        preview.classList.add('is-active');
-        active = true;
-        if (!raf) loop();
-      });
-      row.addEventListener('mouseleave', function () {
-        preview.classList.remove('is-active');
-        active = false;
-      });
+      row.addEventListener('mouseenter', function () { show(row); });
+      row.addEventListener('focus', function () { show(row); });
     });
 
-    document.addEventListener('mousemove', function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
-
-    function loop() {
-      px = lerp(px, mx, 0.14);
-      py = lerp(py, my, 0.14);
-      preview.style.left = px + 'px';
-      preview.style.top = py + 'px';
-      if (active || Math.abs(px - mx) > 0.5) {
-        raf = requestAnimationFrame(loop);
-      } else {
-        raf = null;
-      }
-    }
+    // default state = first project
+    setCaption(rows[0]);
   })();
 
   /* ======================================================================
@@ -558,6 +590,39 @@
   (function year() {
     var y = document.getElementById('year');
     if (y) y.textContent = String(new Date().getFullYear());
+  })();
+
+  /* ======================================================================
+     Stuck-state guards — defensive cleanup for the "page loads scrolled-
+     locked" class of bug. A back/forward-cache (bfcache) restore replays the
+     DOM exactly as it was frozen, so if a tab was cached mid-modal or
+     mid-nav-open, `pageshow` fires WITHOUT a fresh 'load'/DOMContentLoaded
+     and none of the setup above re-runs — this is the one path that can
+     leave body scroll permanently locked, so clear it unconditionally.
+     ====================================================================== */
+  (function stuckStateGuard() {
+    function reset() {
+      body.classList.remove('modal-open', 'nav-open');
+
+      var header = document.getElementById('header');
+      if (header) header.classList.remove('nav-open');
+
+      var burger = document.getElementById('burger');
+      if (burger) {
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Open menu');
+      }
+
+      var modal = document.getElementById('projectModal');
+      if (modal) {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    window.addEventListener('pageshow', function (e) {
+      if (e.persisted) reset();
+    });
   })();
 
 })();

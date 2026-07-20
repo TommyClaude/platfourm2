@@ -285,6 +285,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
 
 .preloader.is-done {
   transform: translateY(-101%);
+  pointer-events: none;
 }
 
 .no-js .preloader,
@@ -565,7 +566,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
   background: var(--bg);
 }
 
-.hero__bg { position: absolute; inset: 0; z-index: 0; }
+.hero__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 
 .hero__layer {
   position: absolute;
@@ -573,6 +574,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
   background-size: cover;
   background-position: center;
   opacity: 0;
+  pointer-events: none;
   transform: scale(1.08);
   transition: opacity 1.6s ease;
   will-change: opacity, transform;
@@ -592,6 +594,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
   position: absolute;
   inset: 0;
   z-index: 2;
+  pointer-events: none;
   background:
     radial-gradient(120% 90% at 15% 20%, rgba(2, 163, 218, 0.14) 0%, rgba(2, 163, 218, 0) 55%),
     linear-gradient(to bottom, rgba(8, 8, 8, 0.62) 0%, rgba(8, 8, 8, 0) 22%),
@@ -1120,28 +1123,13 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
 .pindex__row:hover .pindex__title { transform: translateX(18px); color: var(--blue-bright); }
 .pindex__row:hover .pindex__arrow { transform: translate(6px, -6px); color: var(--blue); }
 
-/* floating preview that follows the cursor */
-.pindex__preview {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 120;
-  width: 300px;
-  height: 380px;
-  background-size: cover;
-  background-position: center;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.82);
-  transition: opacity 0.4s var(--ease), transform 0.5s var(--ease);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
-  will-change: transform, opacity;
-}
+/* Docked preview — calmer replacement for the old cursor-chasing preview.
+   Base state (mobile/tablet, <1024px): hidden, rows fall back to stacked
+   photo cards further down. Desktop (>=1024px) turns this into a sticky
+   frame beside the row list — see the (min-width: 1024px) block below. */
+.projects__layout { display: block; }
 
-.pindex__preview.is-active {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
+.pindex__frame { display: none; }
 
 .projects__cta {
   display: flex;
@@ -1183,10 +1171,15 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
   align-items: flex-start;
   visibility: hidden;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
-.modal.is-open { visibility: visible; opacity: 1; }
+/* pointer-events flips the instant .is-open is toggled (not transitioned),
+   so a closing modal never keeps swallowing clicks/scroll for the ~0.35s
+   fade-out — visibility's own transition is discrete and only flips at the
+   END of a hide transition, which would otherwise leave it hit-testable. */
+.modal.is-open { visibility: visible; opacity: 1; pointer-events: auto; }
 
 .modal__overlay {
   position: absolute;
@@ -1496,7 +1489,33 @@ body.modal-open { overflow: hidden; }
   gap: 30px;
 }
 
-.footer__logo { width: min(210px, 62%); height: auto; }
+/* Rebuilt lockup: the source combination-mark PNG renders its wordmark in
+   near-black, which disappears on this near-black footer — only the blue
+   fan mark ever showed. Recompose from the mark PNG (cropped square,
+   plenty of resolution headroom at this display size) + a live text node
+   set in the brand typeface, so the wordmark is always legible on dark. */
+.footer__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer__logo-mark {
+  display: block;
+  width: 52px;
+  height: auto;
+}
+
+.footer__logo-word {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(20px, 2.2vw, 26px);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+}
 
 .footer__brand p {
   max-width: 34ch;
@@ -1697,13 +1716,141 @@ body.modal-open { overflow: hidden; }
   .why__media { order: -1; max-height: 420px; }
 
   .services__grid { grid-template-columns: repeat(2, 1fr); }
+}
 
-  .pindex__row {
-    grid-template-columns: 60px minmax(0, 1fr) auto;
-    row-gap: 6px;
+/* ==========================================================================
+   Projects — docked preview (desktop) vs. stacked cards (mobile/tablet)
+   Breakpoint intentionally split at 1024px: below it, rows fall back to the
+   simple stacked photo cards (identical to the pre-existing mobile design);
+   at/above it, the sticky docked-preview frame sits beside the row list.
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .projects__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 40%);
+    align-items: start;
+    gap: clamp(32px, 4vw, 64px);
   }
-  .pindex__loc { grid-column: 2 / 4; text-align: left; }
-  .pindex__arrow { grid-row: 1 / 3; grid-column: 3; }
+
+  /* rows get a narrower, stacked info layout to fit beside the frame —
+     typography and hover states (color/translate) are untouched, only
+     placement changes */
+  .projects__layout .pindex__row {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "num title arrow"
+      "num tag   arrow"
+      "num loc   arrow";
+    row-gap: 4px;
+    column-gap: 20px;
+  }
+  .projects__layout .pindex__num   { grid-area: num; }
+  .projects__layout .pindex__title { grid-area: title; }
+  .projects__layout .pindex__tag   { grid-area: tag; }
+  .projects__layout .pindex__loc   { grid-area: loc; text-align: left; }
+  .projects__layout .pindex__arrow { grid-area: arrow; align-self: center; justify-self: end; }
+
+  .pindex__frame {
+    display: block;
+    position: sticky;
+    top: calc(var(--header-h) + 32px);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  }
+
+  .pindex__frame-inner { position: relative; width: 100%; height: 100%; }
+
+  .pindex__frame-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.045);
+    transition: opacity 0.3s var(--ease), transform 0.5s var(--ease);
+  }
+
+  .pindex__frame-img.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .pindex__frame-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 2;
+    padding: 22px 24px;
+    background: linear-gradient(to top, rgba(6, 6, 6, 0.88) 0%, rgba(6, 6, 6, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .pindex__frame-name {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 19px;
+    color: #fff;
+  }
+
+  .pindex__frame-tag {
+    font: var(--label);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+  }
+
+  /* subtle persistent marker on the row matching the frame's current image,
+     even when the pointer isn't hovering it */
+  .pindex__row--current .pindex__num { color: var(--blue); }
+}
+
+@media (max-width: 1023px) {
+  /* projects fall back to stacked cards below the desktop docked-preview
+     breakpoint. Use flex (not grid) so the desktop grid-column/area
+     placements can't leak in and collapse the layout. */
+  .pindex { border-top: 0; }
+  .pindex__row {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0;
+    border-bottom: 0;
+    margin-bottom: 26px;
+    overflow: visible;
+  }
+  .pindex__row::before { display: none; }
+  .pindex__thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    order: -1;
+    margin-bottom: 16px;
+  }
+  .pindex__num {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    padding: 6px 12px;
+    background: rgba(10, 10, 10, 0.72);
+    color: #fff;
+    font-size: 12px;
+  }
+  .pindex__title { font-size: 30px; margin-bottom: 6px; }
+  .pindex__row:hover .pindex__title { transform: none; color: var(--ink); }
+  .pindex__tag { display: block; margin-bottom: 4px; }
+  .pindex__loc { text-align: left; }
+  .pindex__arrow { display: none; }
 }
 
 @media (max-width: 900px) {
@@ -1740,10 +1887,15 @@ body.modal-open { overflow: hidden; }
     place-items: center;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: opacity 0.4s var(--ease), visibility 0.4s var(--ease);
   }
 
-  .nav-open .nav { opacity: 1; visibility: visible; }
+  /* pointer-events flips immediately (not transitioned) so the fixed,
+     full-viewport nav overlay can never keep swallowing taps/scroll for
+     the ~0.4s close fade — visibility's own transition is discrete and
+     only flips to hidden at the END of a hide transition. */
+  .nav-open .nav { opacity: 1; visibility: visible; pointer-events: auto; }
 
   .nav-open .header__burger,
   .nav-open .header__logo { position: relative; z-index: 10; }
@@ -1794,47 +1946,6 @@ body.modal-open { overflow: hidden; }
   .about__founder { flex-wrap: wrap; }
   .about__founder-btn { margin-left: 78px; }
   .about__list { grid-template-columns: 1fr; }
-
-  /* projects fall back to stacked cards on touch/small screens.
-     Use flex (not grid) so the desktop grid-column placements can't
-     leak in and collapse the layout. */
-  .pindex { border-top: 0; }
-  .pindex__row {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    padding: 0;
-    border-bottom: 0;
-    margin-bottom: 26px;
-    overflow: visible;
-  }
-  .pindex__row::before { display: none; }
-  .pindex__thumb {
-    display: block;
-    width: 100%;
-    aspect-ratio: 3 / 2;
-    object-fit: cover;
-    order: -1;
-    margin-bottom: 16px;
-  }
-  .pindex__num {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    z-index: 2;
-    padding: 6px 12px;
-    background: rgba(10, 10, 10, 0.72);
-    color: #fff;
-    font-size: 12px;
-  }
-  .pindex__title { font-size: 30px; margin-bottom: 6px; }
-  .pindex__row:hover .pindex__title { transform: none; color: var(--ink); }
-  .pindex__tag { display: block; margin-bottom: 4px; }
-  .pindex__loc { text-align: left; }
-  .pindex__arrow { display: none; }
-  .pindex__preview { display: none; }
 
   .projects__cta { flex-direction: column; align-items: flex-start; text-align: left; }
 
