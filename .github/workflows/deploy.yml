@@ -1,9 +1,9 @@
-name: Deploy v3 to GitHub Pages
+name: Deploy v5 to GitHub Pages
 
 on:
   push:
     branches:
-      - v3
+      - v5
   workflow_dispatch:
 
 permissions:
@@ -20,16 +20,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # The v3 site is served at https://tommyclaude.github.io/platfourm2/v3/
-      # destination_dir only syncs the v3/ subfolder of the gh-pages branch,
-      # so the current site at the branch root (/platfourm2) stays untouched.
+      # The v5 site is served at https://tommyclaude.github.io/platfourm2/v5/
+      # destination_dir only syncs the v5/ subfolder of the gh-pages branch,
+      # so the sites at the branch root, /v3 and /v4 stay untouched.
       # All asset paths in the site are relative, so no base-path config is
       # needed.
-      - name: Publish to gh-pages under /v3
+      - name: Publish to gh-pages under /v5
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: .
-          destination_dir: v3
+          destination_dir: v5
           exclude_assets: '.github'
