@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PLATFOURM — v5 "Blueprint Noir" · interactions
+   PLATFOURM - v5 "Blueprint Noir" · interactions
    Vanilla JS · rAF + IntersectionObserver · 60fps target · degrades gracefully
    ========================================================================== */
 (function () {
@@ -20,7 +20,7 @@
   var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
 
   /* ======================================================================
-     Preloader — counting % then curtain lift into the hero
+     Preloader - counting % then curtain lift into the hero
      ====================================================================== */
   (function preloader() {
     var pre = document.getElementById('preloader');
@@ -30,13 +30,13 @@
     function reveal() {
       body.classList.add('hero-in');
       // startHero is a var-assigned fn defined later; in the reduced-motion
-      // path reveal() runs synchronously before that assignment — the slideshow
+      // path reveal() runs synchronously before that assignment - the slideshow
       // is intentionally skipped there (static first slide), so guard the call.
       if (typeof startHero === 'function') startHero();
     }
 
     // Dismiss the preloader overlay: adds .is-done (which lifts it off-screen
-    // and — via CSS — sets pointer-events:none immediately, not just once the
+    // and - via CSS - sets pointer-events:none immediately, not just once the
     // lift transition finishes) then fully removes it from layout afterwards.
     function dismiss() {
       if (!pre) return;
@@ -44,7 +44,7 @@
       setTimeout(function () { pre.style.display = 'none'; }, 950);
     }
 
-    // Failsafe: never leave hero content hidden, and — critically — never
+    // Failsafe: never leave hero content hidden, and - critically - never
     // leave the preloader (a fixed, full-viewport, z-500 layer) covering and
     // blocking the page if the rAF counter chain ever stalls for any reason.
     var failsafe = setTimeout(function () {
@@ -85,7 +85,7 @@
   })();
 
   /* ======================================================================
-     Custom cursor — dot + lagging ring, "View" over project rows
+     Custom cursor - dot + lagging ring, "View" over project rows
      ====================================================================== */
   (function cursor() {
     var el = document.getElementById('cursor');
@@ -144,7 +144,7 @@
   })();
 
   /* ======================================================================
-     Header — condense on scroll, hide on scroll-down / show on scroll-up
+     Header - condense on scroll, hide on scroll-down / show on scroll-up
      ====================================================================== */
   (function header() {
     var el = document.getElementById('header');
@@ -192,19 +192,19 @@
   })();
 
   /* ======================================================================
-     Hero — living Ken Burns slideshow
+     Hero - living Ken Burns slideshow
      ====================================================================== */
   var startHero = (function () {
     var layers = Array.prototype.slice.call(document.querySelectorAll('.hero__layer'));
     var dotsWrap = document.getElementById('heroDots');
     var captionText = document.querySelector('.hero__caption-text');
     var captions = [
-      'Genesian Theatre — Grand Staircase',
-      'New Build Duplex — Mudgee, NSW',
-      'Kindalin Childcare — Rouse Hill',
-      'Sydney Airport — T2 Terminal',
-      'Genesian Theatre — Auditorium',
-      'Full Home Renovation — Central Coast'
+      'Genesian Theatre - Grand Staircase',
+      'New Build Duplex - Mudgee, NSW',
+      'Kindalin Childcare - Rouse Hill',
+      'Sydney Airport - T2 Terminal',
+      'Genesian Theatre - Auditorium',
+      'Full Home Renovation - Central Coast'
     ];
     var current = 0, timer = null, dots = [];
     var INTERVAL = 5200;
@@ -240,7 +240,7 @@
   })();
 
   /* ======================================================================
-     Marquee — duplicate the group for a seamless loop
+     Marquee - duplicate the group for a seamless loop
      ====================================================================== */
   (function marquee() {
     var track = document.getElementById('marqueeTrack');
@@ -250,7 +250,7 @@
   })();
 
   /* ======================================================================
-     Scroll reveals — line masks, clip images, translate fades
+     Scroll reveals - line masks, clip images, translate fades
      ====================================================================== */
   (function reveals() {
     var els = document.querySelectorAll('.reveal, .reveal-lines, .reveal-clip');
@@ -312,7 +312,7 @@
   })();
 
   /* ======================================================================
-     Parallax — subtle drift on flagged figures
+     Parallax - subtle drift on flagged figures
      ====================================================================== */
   (function parallax() {
     if (prefersReduced) return;
@@ -341,7 +341,7 @@
   })();
 
   /* ======================================================================
-     Projects — docked preview frame (swaps on row hover/focus)
+     Projects - docked preview frame (swaps on row hover/focus)
      No element follows the cursor: the frame is sticky-docked in the CSS
      two-column layout (>=1024px) and simply crossfades between two stacked
      <img> layers when a different row is hovered/focused.
@@ -463,21 +463,21 @@
         title: 'Genesian Theatre',
         location: 'Sydney, NSW',
         tag: 'Commercial Fit-out',
-        desc: 'A heritage theatre transformation in the heart of Sydney. Platfourm delivered bespoke timber joinery throughout — the grand staircase, bar and foyer — pairing rich timber panelling and brass detailing with a modern teal palette, all while meeting the compliance demands of a working performance venue.',
+        desc: 'A heritage theatre transformation in the heart of Sydney. Platfourm delivered bespoke timber joinery throughout - the grand staircase, bar and foyer - pairing rich timber panelling and brass detailing with a modern teal palette, all while meeting the compliance demands of a working performance venue.',
         images: 10
       },
       'new-build-duplex': {
         title: 'New Build Duplex',
         location: 'Mudgee, NSW',
         tag: 'Residential · New Build',
-        desc: 'Platfourm was entrusted with the management of this project, handling every stage — from the concept phase and design approval through construction and subdivision to its completion — delivering a pair of crisp, contemporary homes in regional NSW.',
+        desc: 'Platfourm was entrusted with the management of this project, handling every stage - from the concept phase and design approval through construction and subdivision to its completion - delivering a pair of crisp, contemporary homes in regional NSW.',
         images: 6
       },
       'full-home-renovation': {
         title: 'Full Home Renovation',
         location: 'Central Coast, NSW',
         tag: 'Residential · Renovation',
-        desc: 'A full remodel of every internal space — bathroom, kitchen and bedrooms — together with an additional carport. Platfourm took a tired weatherboard cottage back to frame and rebuilt it into a bright, modern family home.',
+        desc: 'A full remodel of every internal space - bathroom, kitchen and bedrooms - together with an additional carport. Platfourm took a tired weatherboard cottage back to frame and rebuilt it into a bright, modern family home.',
         images: 4
       },
       'sydney-airport-terminal': {
@@ -491,7 +491,7 @@
         title: 'Redland Grammar School',
         location: 'Cremorne, NSW',
         tag: 'Education',
-        desc: 'Classroom and corridor upgrades at the Cremorne campus — acoustic wall panelling, joinery, storage and new floor finishes. The works were programmed around the school calendar to keep learning spaces available throughout.',
+        desc: 'Classroom and corridor upgrades at the Cremorne campus - acoustic wall panelling, joinery, storage and new floor finishes. The works were programmed around the school calendar to keep learning spaces available throughout.',
         images: 4
       },
       'kindalin-childcare': {
@@ -505,7 +505,7 @@
         title: 'Elanora Aged Care',
         location: 'Elanora, NSW',
         tag: 'Aged Care',
-        desc: 'A common-area refurbishment for an aged-care facility — banquette seating, custom shelving and warm, accessible finishes designed for resident comfort, easy movement and everyday use.',
+        desc: 'A common-area refurbishment for an aged-care facility - banquette seating, custom shelving and warm, accessible finishes designed for resident comfort, easy movement and everyday use.',
         images: 1
       }
     };
@@ -534,7 +534,7 @@
       var html = '';
       for (var i = 1; i <= p.images; i++) {
         html += '<img src="assets/img/projects/' + slug + '-' + i + '.jpg" alt="' +
-          p.title + ' — image ' + i + '" loading="lazy">';
+          p.title + ' - image ' + i + '" loading="lazy">';
       }
       modalGallery.innerHTML = html;
       modalGallery.classList.toggle('modal__gallery--single', p.images < 2);
@@ -545,7 +545,7 @@
       if (modalScroll) modalScroll.scrollTop = 0;
       var closeBtn = modal.querySelector('.modal__close');
       // The modal fades in via a CSS `visibility` transition, so it isn't
-      // focusable the instant `is-open` is added — the browser doesn't
+      // focusable the instant `is-open` is added - the browser doesn't
       // recompute the used `visibility` value (and therefore focusability)
       // until a style/layout pass has actually run. Retry across a few
       // animation frames so a focus attempt always lands once that pass
@@ -593,11 +593,11 @@
   })();
 
   /* ======================================================================
-     Stuck-state guards — defensive cleanup for the "page loads scrolled-
+     Stuck-state guards - defensive cleanup for the "page loads scrolled-
      locked" class of bug. A back/forward-cache (bfcache) restore replays the
      DOM exactly as it was frozen, so if a tab was cached mid-modal or
      mid-nav-open, `pageshow` fires WITHOUT a fresh 'load'/DOMContentLoaded
-     and none of the setup above re-runs — this is the one path that can
+     and none of the setup above re-runs - this is the one path that can
      leave body scroll permanently locked, so clear it unconditionally.
      ====================================================================== */
   (function stuckStateGuard() {
