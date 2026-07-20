@@ -1,6 +1,6 @@
 /* ==========================================================================
-   PLATFOURM — v5 · "BLUEPRINT NOIR"
-   A dark, cinematic, award-site redesign — from concept to completion.
+   PLATFOURM - v5 · "BLUEPRINT NOIR"
+   A dark, cinematic, award-site redesign - from concept to completion.
    Vanilla, self-contained. Brand blue #02A3DA on near-black.
    ========================================================================== */
 
@@ -559,7 +559,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
 }
 
 /* ==========================================================================
-   Hero — living Ken Burns background
+   Hero - living Ken Burns background
    ========================================================================== */
 
 .hero {
@@ -1044,7 +1044,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
 }
 
 /* ==========================================================================
-   Projects — typographic index with floating preview
+   Projects - typographic index with floating preview
    ========================================================================== */
 
 .projects { background: var(--bg); }
@@ -1129,10 +1129,10 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
 .pindex__row:hover .pindex__title { transform: translateX(18px); color: var(--blue-bright); }
 .pindex__row:hover .pindex__arrow { transform: translate(6px, -6px); color: var(--blue); }
 
-/* Docked preview — calmer replacement for the old cursor-chasing preview.
+/* Docked preview - calmer replacement for the old cursor-chasing preview.
    Base state (mobile/tablet, <1024px): hidden, rows fall back to stacked
    photo cards further down. Desktop (>=1024px) turns this into a sticky
-   frame beside the row list — see the (min-width: 1024px) block below. */
+   frame beside the row list - see the (min-width: 1024px) block below. */
 .projects__layout { display: block; }
 
 .pindex__frame { display: none; }
@@ -1183,7 +1183,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
 
 /* pointer-events flips the instant .is-open is toggled (not transitioned),
    so a closing modal never keeps swallowing clicks/scroll for the ~0.35s
-   fade-out — visibility's own transition is discrete and only flips at the
+   fade-out - visibility's own transition is discrete and only flips at the
    END of a hide transition, which would otherwise leave it hit-testable. */
 .modal.is-open { visibility: visible; opacity: 1; pointer-events: auto; }
 
@@ -1302,7 +1302,7 @@ a.hovered .u-line::after { animation: underline-out-right 0.5s ease forwards; }
 body.modal-open { overflow: hidden; }
 
 /* ==========================================================================
-   Why Platfourm — electric-blue block
+   Why Platfourm - electric-blue block
    ========================================================================== */
 
 .why {
@@ -1496,7 +1496,7 @@ body.modal-open { overflow: hidden; }
 }
 
 /* Rebuilt lockup: the source combination-mark PNG renders its wordmark in
-   near-black, which disappears on this near-black footer — only the blue
+   near-black, which disappears on this near-black footer - only the blue
    fan mark ever showed. Recompose from the mark PNG (cropped square,
    plenty of resolution headroom at this display size) + a live text node
    set in the brand typeface, so the wordmark is always legible on dark. */
@@ -1655,7 +1655,7 @@ body.modal-open { overflow: hidden; }
 .js .reveal-lines .line:nth-child(2) .line__i { transition-delay: 0.09s; }
 .js .reveal-lines .line:nth-child(3) .line__i { transition-delay: 0.18s; }
 
-/* hero entrance — content sits hidden until the preloader clears */
+/* hero entrance - content sits hidden until the preloader clears */
 .js .hero__eyebrow,
 .js .hero__text,
 .js .hero__actions,
@@ -1681,7 +1681,7 @@ body.modal-open { overflow: hidden; }
 .js .pindex .reveal.is-visible { transition-delay: var(--stagger, 0s); }
 
 /* ==========================================================================
-   Reduced motion — calm, fully readable, static first slide
+   Reduced motion - calm, fully readable, static first slide
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1725,7 +1725,7 @@ body.modal-open { overflow: hidden; }
 }
 
 /* ==========================================================================
-   Projects — docked preview (desktop) vs. stacked cards (mobile/tablet)
+   Projects - docked preview (desktop) vs. stacked cards (mobile/tablet)
    Breakpoint intentionally split at 1024px: below it, rows fall back to the
    simple stacked photo cards (identical to the pre-existing mobile design);
    at/above it, the sticky docked-preview frame sits beside the row list.
@@ -1739,7 +1739,7 @@ body.modal-open { overflow: hidden; }
     gap: clamp(32px, 4vw, 64px);
   }
 
-  /* rows get a narrower, stacked info layout to fit beside the frame —
+  /* rows get a narrower, stacked info layout to fit beside the frame -
      typography and hover states (color/translate) are untouched, only
      placement changes */
   .projects__layout .pindex__row {
@@ -1900,7 +1900,7 @@ body.modal-open { overflow: hidden; }
 
   /* pointer-events flips immediately (not transitioned) so the fixed,
      full-viewport nav overlay can never keep swallowing taps/scroll for
-     the ~0.4s close fade — visibility's own transition is discrete and
+     the ~0.4s close fade - visibility's own transition is discrete and
      only flips to hidden at the END of a hide transition. */
   .nav-open .nav { opacity: 1; visibility: visible; pointer-events: auto; }
 
