@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=v5-20260720-5">
+  <link rel="stylesheet" href="css/style.css?v=v5-20260720-6">
   <script>
     /* progressive enhancement flag — set before paint so JS-only states
        (masked reveals, preloader) never trap content when JS is off */
@@ -38,6 +38,29 @@
       <div class="preloader__bar"><span class="preloader__fill" id="preFill"></span></div>
     </div>
   </div>
+
+  <!-- Preloader failsafe: independent of js/main.js. If main.js never runs
+       (blocked, parse error, exotic browser) or stalls, this plain ES5
+       inline script forces the preloader away after 5s so content is never
+       trapped behind it. main.js has its own (earlier) dismiss path that
+       normally wins; this is only a backstop. -->
+  <script>
+    (function () {
+      setTimeout(function () {
+        var pre = document.getElementById('preloader');
+        if (!pre) { return; }
+        var cls = pre.className || '';
+        if ((' ' + cls + ' ').indexOf(' is-done ') === -1) {
+          pre.style.display = 'none';
+          var b = document.body;
+          var bcls = b.className || '';
+          if ((' ' + bcls + ' ').indexOf(' hero-in ') === -1) {
+            b.className = bcls ? bcls + ' hero-in' : 'hero-in';
+          }
+        }
+      }, 5000);
+    })();
+  </script>
 
   <!-- ============ CUSTOM CURSOR ============ -->
   <div class="cursor" id="cursor" aria-hidden="true">
@@ -532,6 +555,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=v5-20260720-5"></script>
+  <script src="js/main.js?v=v5-20260720-6"></script>
 </body>
 </html>

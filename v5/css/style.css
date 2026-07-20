@@ -56,8 +56,6 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
-  overflow-x: hidden;
-  overscroll-behavior-y: none;
   background: var(--bg);
 }
 
@@ -69,7 +67,6 @@ body {
   color: var(--muted);
   background: var(--bg);
   overflow-x: hidden;
-  overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -96,6 +93,15 @@ ul { padding: 0; margin: 0; list-style: none; }
 .container {
   width: min(100% - var(--gutter) * 2, var(--container));
   margin-inline: auto;
+}
+
+/* The marquee band below is intentionally rotated + oversized (108% width)
+   to avoid gaps at its rotated edges. With root-level (html) horizontal
+   clipping removed, contain its overflow at the nearest sectioning
+   ancestor instead of re-adding overflow-x on <html>. */
+main {
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 :focus-visible {
@@ -1754,8 +1760,9 @@ body.modal-open { overflow: hidden; }
   .pindex__frame {
     display: block;
     position: sticky;
-    top: calc(var(--header-h) + 32px);
-    aspect-ratio: 4 / 5;
+    top: max(110px, calc(50vh - min(33vh, 310px)));
+    width: 100%;
+    height: min(66vh, 620px);
     overflow: hidden;
     background: var(--bg-2);
     border: 1px solid var(--line);
